@@ -1,0 +1,8 @@
+.mat-button.mat-blue {
+    color: #e3f2fd;
+ }
+ 
+ .mat-raised-button.mat-blue, .mat-flat-button.mat-blue{
+    background-color: blue;
+    color: white;
+ }

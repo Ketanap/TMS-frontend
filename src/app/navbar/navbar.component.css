@@ -1,0 +1,41 @@
+ /* Color of the links BEFORE scroll */
+ .navbar-scroll .nav-link,
+ .navbar-scroll .navbar-toggler-icon,
+ .navbar-scroll .navbar-brand {
+   color: #fff;
+ }
+ 
+ /* Color of the links AFTER scroll */
+ .navbar-scrolled .nav-link,
+ .navbar-scrolled .navbar-toggler-icon,
+ .navbar-scrolled .navbar-brand {
+   color: #fff;
+ }
+ 
+ /* Color of the navbar AFTER scroll */
+ .navbar-scroll,
+ .navbar-scrolled {
+   background-color: #cbbcb1;
+ }
+ 
+ .mask-custom {
+   backdrop-filter: blur(5px);
+   background-color: rgb(8, 2, 2);
+ }
+ .navbar-brand {
+  font-size: 1.75rem;
+  letter-spacing: 3px;
+}
+ .nav-link{
+  margin-right: 10px ;
+  font-size: 18px;
+}
+.nav-link:hover{
+  background-color: #2b4c59;
+  -webkit-text-fill-color: #D5DDDF;
+  border-radius: 5px;
+ }
+ .btn:hover{
+   background-color: #2b4c59;
+   color: #D5DDDF;
+ }
