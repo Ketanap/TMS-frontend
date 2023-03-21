@@ -1,8 +1,14 @@
-.mat-button.mat-blue {
-    color: #e3f2fd;
+ .container{
+   margin-top: 150px;
  }
- 
- .mat-raised-button.mat-blue, .mat-flat-button.mat-blue{
-    background-color: blue;
-    color: white;
- }
+ .btn{
+   background-color: #2b4c59;
+   color: #D5DDDF;
+}
+.btn:hover{
+  background-color: #95bccc;
+  color: black;
+}
+.h2 , h2{
+  font-size: 40px;
+}

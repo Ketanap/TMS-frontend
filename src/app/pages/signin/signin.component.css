@@ -1,0 +1,17 @@
+.container{
+    margin-top: 150px;
+}
+.btn{
+     background-color: #2b4c59;
+     color: #D5DDDF;
+}
+.btn:hover{
+    background-color: #95bccc;
+    color: black;
+}
+h2{
+    font-size: 40px;
+}
+.text-right{
+    text-align: right;
+}
