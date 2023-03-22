@@ -6,21 +6,17 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent {
-@Input() id:any="";
-UserName="";
-Password="";
-constructor(private http: HttpClient) {}
-ngOnInit() { }
-showData(data:any){
-  this.UserName=data.UserName;
-  this.Password=data.Password;
-
+//@Input() id:any="";
+UserName:string="";
+Password:string="";
+show: boolean= false;
+submit(){
+console.log("user name is " + this.UserName)
+this.clear();
 }
-onSubmit() {
-  this.http.post('http://127.0.0.1:9090/user/login',
-  {id:this.id,UserName: this.UserName, Password:this.Password})
-  .subscribe(
-    data=>{location.reload();}
-  );
+clear(){
+this.UserName ="";
+this.Password = "";
+this.show = true;
 }
 }

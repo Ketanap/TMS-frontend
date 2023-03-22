@@ -4,23 +4,24 @@
                 <div class="text-center mb-4">
                 <h2 class="text-center pt-3">Sign In</h2>
                 </div>
-                <form (ngSubmit)="onSubmit()" #addForm="ngForm">
+                <form (ngSubmit)="submit()" #addForm="ngForm">
                    <div class="input-group mb-3">
                     <span class="input-group-text"></span>
-                    <input type="text" class="form-control" id="username" placeholder="User Name" name="UserName" [(ngModel)]="UserName">
+                    <input type="text" class="form-control" id="username" name="User Name" placeholder="User Name" name="UserName" [(ngModel)]="UserName">
                    </div>
-                   <div class="input-group mb-3">
+                   <div class="input-group mb-1">
                     <span class="input-group-text"></span>
-                    <input type="password" class="form-control" id="password" placeholder="Password" name="Password" [(ngModel)]="Password">
+                    <input type="password" class="form-control" id="password" name="Password" placeholder="Password" name="Password" [(ngModel)]="Password">
                    </div>
                    <div class="text-right">
                     <span><a href="">Forgot Password?</a></span>
                 </div>
                 <div class="input-group mb-3"></div>
                    <div class="d-grid">
-                    <input type="submit"  class="btn" value="login">
+                    <input type="submit"  class="btn" value="Signup">
                     <p class="text-center text-muted mb-1">Create Account <a href="signup">Signup Now</a></p>
                    </div>
                 </form>
             </div>
-        </div>
+    
+    </div>

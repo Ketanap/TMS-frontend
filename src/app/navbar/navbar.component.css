@@ -1,27 +1,22 @@
  .active-link{
-  -webkit-text-fill-color: #D5DDDF;
-  border-radius: 5px;
-  background-color: #2b4c59;
+  -webkit-text-fill-color: #2b4c59;
+  border-bottom: 2px solid ;
+  font-weight: bold;
+  text-underline-offset: 0.5rem;
  }
  .navbar-brand {
   font-size: 1.75rem;
   letter-spacing: 2px;
 }
  .nav-link{
-  margin-right: 10px ;
+  margin-right: 9px ;
   font-size: 18px;
   color: black;
 }
-.btn{
-  color: black;
-  font-size: 18px;
+.nav-link:hover, .nav-link:active, .nav-link:focus{
+  transform: translateY(-5px);
+  color: #2b4c59;
 }
-.nav-link:hover{
-  background-color: #2b4c59;
-  -webkit-text-fill-color: #D5DDDF;
-  border-radius: 5px;
- }
- .btn:hover{
-   background-color: #2b4c59;
-   color: #D5DDDF;
- }
+.ms-auto{
+  margin-right: 90px;
+}

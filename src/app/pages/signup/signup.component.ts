@@ -15,20 +15,10 @@ Contact="";
 constructor(private http: HttpClient) {}
  
 ngOnInit(){ }
-ngOnChanges() {
-  console.log("signup" + this.id);
-  this.http.get('http://localhost:9090/user'+this.id).subscribe(data=>this.showData(data));
-}
-showData(data:any) {
-  this.UserName=data.UserName;
-  this.Email=data.Email;
-  this.Password=data.Password;
-  this.Contact=data.Contact;
-}
 OnSubmit()
 {
   this.http.post('http://localhost:9090/user',
-  {id:this.id,UserName:this.UserName,Email:this.Email,Password:this.Password,Contact:this.Contact})
+  {id:this.id,username:this.UserName,email:this.Email,password:this.Password,contact:this.Contact,roleid:2})
   .subscribe(
     data=>{location.reload();}
   );
