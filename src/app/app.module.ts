@@ -9,6 +9,19 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ClientDisplayComponent } from './services/client-display/client-display.component';
+import { ClientAddComponent } from './services/client-add/client-add.component';
+import { TaskstatusDisplayComponent } from './services/taskstatus-display/taskstatus-display.component';
+import { TaskstatusAddComponent } from './services/taskstatus-add/taskstatus-add.component';
+import { ProjectDisplayComponent } from './services/project-display/project-display.component';
+import { ProjectAddComponent } from './services/project-add/project-add.component';
+import { TaskDisplayComponent } from './services/task-display/task-display.component';
+import { TaskAddComponent } from './services/task-add/task-add.component';
+import { ProfileComponent } from './services/profile/profile.component';
+import { ChangePasswordComponent } from './services/change-password/change-password.component';
+import { LogoutComponent } from './services/logout/logout.component';
+import { VerticalnavComponent } from './verticalnav/verticalnav.component';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +29,20 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     SigninComponent,
     SignupComponent,
-    NavbarComponent
+    NavbarComponent,
+    ClientDisplayComponent,
+    ClientAddComponent,
+    TaskstatusDisplayComponent,
+    TaskstatusAddComponent,
+    ProjectDisplayComponent,
+    ProjectAddComponent,
+    TaskDisplayComponent,
+    TaskAddComponent,
+    ProfileComponent,
+    ChangePasswordComponent,
+    LogoutComponent,
+    VerticalnavComponent,
+    
   ],
   imports: [
     BrowserModule,
