@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { SigninComponent } from './pages/signin/signin.component';
@@ -15,22 +16,38 @@ import { ChangePasswordComponent } from './services/change-password/change-passw
 import { LogoutComponent } from './services/logout/logout.component';
 import { TaskAddComponent } from './services/task-add/task-add.component';
 import { VerticalnavComponent } from './verticalnav/verticalnav.component';
-
+import { AuthGuard } from './authGuard';
 
 const routes: Routes = [
-  {path:'',component:HomeComponent},
-  {path:'signin',component:SigninComponent},
-  {path:'verticalnav',component:VerticalnavComponent},
-  {path:'signup',component:SignupComponent},
+  //Site routes goes here 
+  { 
+    path: '', 
+    component: NavbarComponent,
+    children: [
+      {path:'',component:HomeComponent, pathMatch: 'full'} ,
+      {path:'signin',component:SigninComponent},
+      {path:'verticalnav',component:VerticalnavComponent},
+      {path:'signup',component:SignupComponent},
+        ]
+},
+
+// App routes goes here here
+{ 
+    path: '',
+    component: VerticalnavComponent, 
+    children: [
+      {path:'client',component:ClientDisplayComponent  ,canActivate: [AuthGuard], },
+      {path:'taskstatus',component:TaskstatusDisplayComponent, canActivate: [AuthGuard],},
+      {path:'project',component:ProjectDisplayComponent, canActivate: [AuthGuard],},
+      {path:'task',component:TaskDisplayComponent, canActivate: [AuthGuard],},
+      {path:'profile',component:ProfileComponent, canActivate: [AuthGuard],},
+      {path:'changepassword',component:ChangePasswordComponent, canActivate: [AuthGuard],},
+      {path:'logout',component:LogoutComponent, canActivate: [AuthGuard],}
+        ]
+},
+
 
   
-  {path:'client',component:ClientDisplayComponent},
-  {path:'taskstatus',component:TaskstatusDisplayComponent},
-  {path:'project',component:ProjectDisplayComponent},
-  {path:'task',component:TaskDisplayComponent},
-  {path:'profile',component:ProfileComponent},
-  {path:'changepassword',component:ChangePasswordComponent},
-  {path:'logout',component:LogoutComponent}
 ];
 
 @NgModule({
