@@ -24,17 +24,10 @@ export class SigninComponent {
         data => {
           console.log(data);
           if (!data) { this.Error = "Invalid Creadentail"; }
-          else {localStorage.setItem("user",JSON.stringify( data)); location.reload(); }
+          else {localStorage.setItem("user",JSON.stringify( data));this.router.navigateByUrl("/client"); }
         }
       );
-  //  localStorage.setItem("user","Something"); 
-    console.log("Before Navigate");
-    this.router.navigateByUrl('/verticalnav',{skipLocationChange:true}).then(()=>{
-      this.router.navigate([`/client`]).then(()=>{
-        console.log(`After navigation I am on:${this.router.url}`)
-      })
-    })
-
+  
     
   }
   clear() {
