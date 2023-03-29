@@ -17,6 +17,7 @@ import { LogoutComponent } from './services/logout/logout.component';
 import { TaskAddComponent } from './services/task-add/task-add.component';
 import { VerticalnavComponent } from './verticalnav/verticalnav.component';
 import { AuthGuard } from './authGuard';
+import { TaskhistoryComponent } from './services/taskhistory/taskhistory.component';
 
 const routes: Routes = [
   //Site routes goes here 
@@ -42,7 +43,8 @@ const routes: Routes = [
       {path:'task',component:TaskDisplayComponent, canActivate: [AuthGuard],},
       {path:'profile',component:ProfileComponent, canActivate: [AuthGuard],},
       {path:'changepassword',component:ChangePasswordComponent, canActivate: [AuthGuard],},
-      {path:'logout',component:LogoutComponent, canActivate: [AuthGuard],}
+      {path:'logout',component:LogoutComponent, canActivate: [AuthGuard],},
+      {path:'taskhistory',component:TaskhistoryComponent, canActivate: [AuthGuard],}
         ]
 },
 

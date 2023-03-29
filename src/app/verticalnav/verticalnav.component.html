@@ -1,65 +1,42 @@
-<link rel="stylesheet" href="verticalnav.component.css">
-<div class="row">
-<div class="col-md-4">
-
-<div class="vertical-nav bg-white" id="sidebar">
-    <div class="py-4 px-3 mb-4 bg-light">
-      
-        <div class="media-body">
-          <p class="font-weight-light text-muted mb-0">Services</p>
+<div class="s-layout">
+  <!-- Sidebar -->
+  
+  
+    <nav class="s-sidebar__nav">
+      <div class="s-layout__sidebar">
+        <a class="s-sidebar__trigger" href="#0">
+          <i class="fa fa-bars"></i>
+        </a>
+        <div class="service">
+          Services
         </div>
-      
-    </div>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="client" routerLinkActive="active-link"
+              [routerLinkActiveOptions]="{exact:true}">Client</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="task" routerLinkActive="active-link">Task</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="taskstatus" routerLinkActive="active-link">Task Status</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="taskhistory" routerLinkActive="active-link">Task History</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="project" routerLinkActive="active-link">Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="profile" routerLinkActive="active-link">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="changepassword" routerLinkActive="active-link">Change Password</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="logout" routerLinkActive="active-link">Log Out</a>
+          </li>
+        </ul>
+      </div>
+      <router-outlet></router-outlet>
   
-    
-  
-    <ul class="nav flex-column bg-white mb-0">
-      <li class="nav-item">
-        <a href="client" class="nav-link text-dark font-italic">
-                  <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
-                   Client
-              </a>
-      </li>
-      <li class="nav-item">
-        <a href="taskstatus" class="nav-link text-dark font-italic">
-                  <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-                  TaskStatus
-              </a>
-      </li>
-      <li class="nav-item">
-        <a href="task" class="nav-link text-dark font-italic">
-                  <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
-                  Task
-              </a>
-      </li>
-      <li class="nav-item">
-        <a href="project" class="nav-link text-dark font-italic">
-                  <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
-                  Project
-              </a>
-      </li>
-      <li class="nav-item">
-        <a href="profile" class="nav-link text-dark font-italic">
-                  <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
-                  Profile
-              </a>
-      </li>
-      <li class="nav-item">
-        <a href="changepassword" class="nav-link text-dark font-italic">
-                  <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
-                  Change Password
-              </a>
-      </li>
-      <li class="nav-item">
-        <a href="logout" class="nav-link text-dark font-italic">
-                  <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
-                  Logout
-              </a>
-      </li>
-    </ul>
-</div>
-
-<div class="col-md-8" style="margin-left: 300px;">
-    <router-outlet ></router-outlet>        
-</div>
-</div>

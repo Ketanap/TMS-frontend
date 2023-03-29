@@ -1,21 +1,23 @@
  .active-link{
-  -webkit-text-fill-color: #2b4c59;
-  border-bottom: 2px solid ;
+  -webkit-text-fill-color:  rgba(255, 255, 255, 0.7);
+  border-bottom: 2px solid  rgba(255, 255, 255, 0.7);
   font-weight: bold;
   text-underline-offset: 0.5rem;
+  transform: translateY(-5px);
  }
  .navbar-brand {
   font-size: 1.75rem;
   letter-spacing: 2px;
+  color:  rgba(255, 255, 255, 0.7);
 }
  .nav-link{
   margin-right: 9px ;
   font-size: 18px;
-  color: black;
+  color:  rgba(255, 255, 255, 0.7);
 }
-.nav-link:hover, .nav-link:active, .nav-link:focus{
+.nav-link:hover, .nav-link:active{
   transform: translateY(-5px);
-  color: #2b4c59;
+  color: #95bccc;
 }
 .ms-auto{
   margin-right: 90px;
