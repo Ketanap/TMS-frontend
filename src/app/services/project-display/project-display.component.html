@@ -1,1 +1,31 @@
-<p>project-display works!</p>
+<link rel="stylesheet" href="project-display.component.css">
+
+
+<div class="container" style="width:100vw">
+    <div>
+        <h3>Project</h3>
+    </div>
+    <br>
+    <a href="projectadd" class="btn btn-primary">Add</a>
+    <br>
+    <br>
+    <table class="table table-striped ">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Project Name</th>
+                <th>Client Id</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let address of addresses ">
+                <td> {{ address.ProjectName }} </td>
+                <td> {{ address.ClientId }} </td>
+                <td><button type="button" class="btn btn-primary" routerLink="..//localhost:9090/user">Edit</button>
+                </td>
+                <td><button type="button" class="btn btn-danger">Delete</button></td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

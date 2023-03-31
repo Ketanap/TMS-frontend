@@ -2,45 +2,32 @@
 
 
 <div class="container" style="width:100vw">
-<div>
-    <h3>Client</h3>
-</div>
-<br>
-<button type="button" class="btn btn-primary"  routerLink="">Add</button>
-<br>
-<br>
-<table class="table table-striped" id="tblclient">
- 
-    <thead class="thead">
-        <tr>
-            <th>Edit</th>
-            
-            <th>Client Name</th>
-            <th>Email</th>
-            <th>Contact</th>
-            <th>Delete</th>
-        </tr>
-        <tr>
-            <td></td>
-            <td>Peter</td>
-            <td>Griffin</td>
-            <td>$100</td>
-            <td></td>
-        </tr>
+    <div>
+        <h3>Client</h3>
+    </div>
+    <br>
+    <a href="clientadd" class="btn btn-primary">Add</a>
+    <br>
+    <br>
+    <table class="table table-striped ">
+        <thead class="thead-inverse">
             <tr>
-                <td></td>
-            <td>Lois</td>
-            <td>Griffin</td>
-            <td>$150</td>
-            <td></td>
-        </tr>
-            <tr>
-                <td></td>
-            <td>Joe</td>
-            <td>Swanson</td>
-            <td>$300</td>
-            <td></td>
+                <th>Client Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Action</th>
             </tr>
-    </thead>
-</table>
+        </thead>
+        <tbody>
+            <tr *ngFor="let address of addresses ">
+                <td> {{ address.ClientName }} </td>
+                <td> {{ address.Email }} </td>
+                <td> {{ address.Contact }} </td>
+                <td><button type="button" class="btn btn-primary" routerLink="..//localhost:9090/user">Edit</button>
+                </td>
+                <td><button type="button" class="btn btn-danger">Delete</button></td>
+
+            </tr>
+        </tbody>
+    </table>
 </div>

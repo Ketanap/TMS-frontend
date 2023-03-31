@@ -1,1 +1,43 @@
-<p>task-display works!</p>
+<link rel="stylesheet" href="task-display.component.css">
+
+
+<div class="container" >
+    <div>
+        <h3>Task</h3>
+    </div>
+    <br>
+    <a href="taskadd" class="btn btn-primary">Add</a>
+    <br>
+    <br>
+    <table class="table table-striped ">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Task Date</th>
+                <th>User Id</th>
+                <th>Project Id</th>
+                <th>Status Id</th>
+                <th>Expected Time</th>
+                <th>Actual Time</th>
+                <th>Due Date</th>
+                <th>Complete Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let address of addresses ">
+                <td> {{ address.Taskdate}} </td>
+                <td> {{ address.UserId }} </td>
+                <td> {{ address.ProjectId }} </td>
+                <td> {{ address.StatusId }} </td>
+                <td> {{ address.ExpectedTime }} </td>
+                <td> {{ address.ActualTime }} </td>
+                <td> {{ address.DueDate }} </td>
+                <td> {{ address.CompleteDate }} </td>
+                <td><button type="button" class="btn btn-primary" routerLink="..//localhost:9090/user">Edit</button>
+                </td>
+                <td><button type="button" class="btn btn-danger">Delete</button></td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

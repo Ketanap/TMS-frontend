@@ -44,6 +44,11 @@ const routes: Routes = [
       {path:'profile',component:ProfileComponent, canActivate: [AuthGuard],},
       {path:'changepassword',component:ChangePasswordComponent, canActivate: [AuthGuard],},
       {path:'logout',component:LogoutComponent, canActivate: [AuthGuard],},
+      {path:'taskhistory',component:TaskhistoryComponent, canActivate: [AuthGuard],},
+      {path:'clientadd',component:ClientAddComponent, canActivate: [AuthGuard],},
+      {path:'projectadd',component:ProjectAddComponent, canActivate: [AuthGuard],},
+      {path:'taskadd',component:TaskAddComponent, canActivate: [AuthGuard],},
+      {path:'taskstatusadd',component:TaskstatusAddComponent, canActivate: [AuthGuard],},
       {path:'taskhistory',component:TaskhistoryComponent, canActivate: [AuthGuard],}
         ]
 },

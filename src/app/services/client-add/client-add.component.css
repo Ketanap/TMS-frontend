@@ -1,0 +1,16 @@
+  .btn{
+    background-color: #243e56;
+    color: #D5DDDF;
+ }
+ .btn:hover{
+   background-color: #95bccc;
+   color: black;
+ }
+ .h2 , h2{
+   font-size: 40px;
+ }
+ .container{
+    width: 200%;
+    
+ }
+ 

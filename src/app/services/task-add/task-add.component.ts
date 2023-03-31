@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-task-add',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./task-add.component.css']
 })
 export class TaskAddComponent {
+  
+
 
 }

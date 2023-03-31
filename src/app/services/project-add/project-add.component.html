@@ -1,1 +1,26 @@
-<p>project-add works!</p>
+<div class="container">
+    
+    <div class=" rounded-top wrapper">
+        <div class="text-center mb-4">
+        <h2 class="text-center pt-3">Add Project</h2>
+        </div>
+        <form (ngSubmit)="OnSubmit()" #addForm="ngForm">
+            <div class="form-floating mb-3">
+                <input type="DataTypes" class="form-control" id="projectid" placeholder="project Id" name="ProjectId" [(ngModel)]="ProjectId">
+                <label for="floatingInput">Project Id</label>
+               </div>
+           <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="Projectname" placeholder="Project Name" name="ProjectName" [(ngModel)]="ProjectName">
+            <label for="floatingInput"> Project Name</label>
+           </div>
+           <div class="form-floating mb-3">
+            <input type="DataTypes" class="form-control" id="clientid" placeholder="Client Id" name="Clientid" [(ngModel)]="ClientId">
+            <label for="floatingInput">Client Id</label>
+           </div>
+        <div class="form-floating mb-2"></div>
+           <div class="d-grid">
+            <input type="submit"  class="btn" value="Add">
+           </div>
+        </form>
+    </div>
+</div>

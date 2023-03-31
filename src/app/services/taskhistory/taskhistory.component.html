@@ -1,1 +1,33 @@
-<p>taskhistory works!</p>
+<link rel="stylesheet" href="taskhistory.component.css">
+
+
+<div class="container" style="width:100vw">
+    <div>
+        <h3>Task History</h3>
+    </div>
+    <br>
+    <br>
+    <table class="table table-striped ">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Task Id</th>
+                <th>Change Date</th>
+                <th>FromStatus Id</th>
+                <th>ToStatus Id</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let address of addresses ">
+                <td> {{ address.TaskId }} </td>
+                <td> {{ address.ChangeDate }} </td>
+                <td> {{ address.FromStatusId }} </td>
+                <td> {{ address.ToStatusId }} </td>
+                <td><button type="button" class="btn btn-primary" routerLink="..//localhost:9090/user">Edit</button>
+                </td>
+                <td><button type="button" class="btn btn-danger">Delete</button></td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

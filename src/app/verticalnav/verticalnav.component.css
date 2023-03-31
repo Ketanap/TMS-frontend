@@ -176,8 +176,8 @@ a {
 
   /* Sidebar */
   .s-sidebar__trigger {
-    display: none
-  }
+    display: none;
+    }
 
   .s-sidebar__nav {
     width: 15em;

@@ -1,1 +1,31 @@
-<p>taskstatus-display works!</p>
+<link rel="stylesheet" href="taskstatus-display.component.css">
+
+
+<div class="container" style="width:100vw">
+    <div>
+        <h3>Task Status</h3>
+    </div>
+    <br>
+    <a href="taskstatusadd" class="btn btn-primary">Add</a>
+    <br>
+    <br>
+    <table class="table table-striped ">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Status Name</th>
+                <th>Type</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let address of addresses ">
+                <td> {{ address.StatusName }} </td>
+                <td> {{ address.type }} </td>
+                <td><button type="button" class="btn btn-primary" routerLink="..//localhost:9090/user">Edit</button>
+                </td>
+                <td><button type="button" class="btn btn-danger">Delete</button></td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
