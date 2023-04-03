@@ -18,7 +18,7 @@ export class SigninComponent {
   constructor(private http: HttpClient,private router: Router) { }
   submit() {
      
-    this.http.post('http://localhost:9090/user/login/',
+    this.http.post('http://localhost:9090/user/logintoken/',
       { email: this.Email, password: this.Password  })
       .subscribe(
         data => {

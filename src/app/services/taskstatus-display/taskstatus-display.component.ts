@@ -11,7 +11,7 @@ export class TaskstatusDisplayComponent {
 
   @Output() editEvent= new EventEmitter<any>();
   constructor(private http: HttpClient) {
-        this.http.get('http://localhost:9090/project').subscribe(data=>this.showData(data) );
+        this.http.get('http://localhost:9090/taskstaus').subscribe(data=>this.showData(data) );
      }
      
 
@@ -30,7 +30,7 @@ export class TaskstatusDisplayComponent {
   }
 
   removeClick(id: number) {
-    this.http.delete('http://localhost:9090/project'+id).subscribe(data=>{location.reload() ; });
+    this.http.delete('http://localhost:9090/taskstatus'+id).subscribe(data=>{location.reload() ; });
   }
 
 
