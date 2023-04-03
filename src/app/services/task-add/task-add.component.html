@@ -1,0 +1,50 @@
+<div class="container">
+    
+    <div class=" rounded-top wrapper">
+        <div class="text-center mb-4">
+        <h2 class="text-center pt-3">Add Task</h2>
+        </div>
+        <form (ngSubmit)="OnSubmit()" #addForm="ngForm">
+            <div class="form-floating mb-3">
+                <input type="integer" class="form-control" id="taskid" placeholder="Task Id" name="TaskId" [(ngModel)]="TaskId">
+                <label for="floatingInput">Task Id</label>
+               </div>
+           <div class="form-floating mb-3">
+            <input type="string" class="form-control" id="taskdate" placeholder="Task Date" name="TaskDate" [(ngModel)]="TaskDate">
+            <label for="floatingInput">Task Date</label>
+           </div>
+           <div class="form-floating mb-3">
+            <input type="integer" class="form-control" id="userid" placeholder="User Id" name="UserId" [(ngModel)]="UserId">
+            <label for="floatingInput">User Id</label>
+           </div>
+           <div class="form-floating mb-3">
+            <input type="integer" class="form-control" id="projectid" placeholder="Project Id" name="ProjectId" [(ngModel)]="ProjectId">
+            <label for="floatingInput">Project Id</label>
+           </div>
+           <div class="form-floating mb-3">
+            <input type="integer" class="form-control" id="statusid" placeholder="Stauts Id" name="StatusId" [(ngModel)]="StatusId">
+            <label for="floatingInput">Stauts Id</label>
+           </div>
+           <div class="form-floating mb-3">
+            <input type="integer" class="form-control" id="expectedtime" placeholder="Expected Time" name="ExpectedTime" [(ngModel)]="ExpectedTime">
+            <label for="floatingInput">Expected Time</label>
+           </div>
+           <div class="form-floating mb-3">
+            <input type="integer" class="form-control" id="actualtime" placeholder="Actual Time" name="ActualTime" [(ngModel)]="ActualTime">
+            <label for="floatingInput">Actual Time</label>
+           </div>
+           <div class="form-floating mb-3">
+            <input type="string" class="form-control" id="duedate" placeholder="Due Date" name="DueDate" [(ngModel)]="DueDate">
+            <label for="floatingInput">Due Date</label>
+           </div>
+           <div class="form-floating mb-3">
+            <input type="string" class="form-control" id="completeddate" placeholder="Completed Date" name="CompletedDate" [(ngModel)]="CompletedDate">
+            <label for="floatingInput">Completed Date</label>
+           </div>
+        <div class="form-floating mb-2"></div>
+           <div class="d-grid">
+            <input type="submit"  class="btn" value="Add">
+           </div>
+        </form>
+    </div>
+</div>

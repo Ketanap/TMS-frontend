@@ -1,16 +1,17 @@
 .btn{
-    background-color: #243e56;
-    color: #D5DDDF;
- }
- .btn:hover{
-   background-color: #95bccc;
-   color: black;
- }
- .h2 , h2{
-   font-size: 40px;
- }
- .container{
-    width: 200%;
-    
- }
- 
+  background-color: #243e56;
+  color: #D5DDDF;
+  margin-bottom: 15px;
+}
+.btn:hover{
+ background-color: #95bccc;
+ color: black;
+}
+.h2 , h2{
+ font-size: 40px;
+}
+.container{
+  width: 200%;
+  box-shadow: 20px 20px 50px grey;
+  
+}

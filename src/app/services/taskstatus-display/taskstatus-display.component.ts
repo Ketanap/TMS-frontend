@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
@@ -7,21 +7,29 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./taskstatus-display.component.css']
 })
 export class TaskstatusDisplayComponent {
-  addresses : any = [];
+  taskstatuses : any = [];
 
   @Output() editEvent= new EventEmitter<any>();
   constructor(private http: HttpClient) {
-        this.http.get('http://localhost:9090/taskstaus').subscribe(data=>this.showData(data) );
-     }
-     
+    var user=JSON.parse(localStorage.getItem("user")||"{}");
+    let api_key=user.token;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${api_key}`
+    });
+
+    const requestOptions = { headers: headers };
+    this.http.get('http://localhost:9090/taskstatus', requestOptions).subscribe(data => this.showData(data));
+  }
+
 
   ngOnInit(): void {
- 
+
   }
- 
+
   showData(data:any){
-      this.addresses=data;
-      console.log(this.addresses[0]);
+      this.taskstatuses=data;
+
   }
   editClick(id: number) {
     console.log(id);
@@ -30,7 +38,7 @@ export class TaskstatusDisplayComponent {
   }
 
   removeClick(id: number) {
-    this.http.delete('http://localhost:9090/taskstatus'+id).subscribe(data=>{location.reload() ; });
+    this.http.delete('http://localhost:9090/client'+id).subscribe(data=>{location.reload() ; });
   }
 
 

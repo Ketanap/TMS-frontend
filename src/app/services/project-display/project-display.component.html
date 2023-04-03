@@ -14,16 +14,17 @@
             <tr>
                 <th>Project Name</th>
                 <th>Client Id</th>
-                <th>Action</th>
+               
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let address of addresses ">
-                <td> {{ address.ProjectName }} </td>
-                <td> {{ address.ClientId }} </td>
-                <td><button type="button" class="btn btn-primary" routerLink="..//localhost:9090/user">Edit</button>
+            <tr *ngFor="let project of projects ">
+                <td> {{ project.projectname }} </td>
+                <td> {{ project.clientid }} </td>
+                <td><input type="button"  value="Edit" src="../../assets/edit.png" class="btn btn-primary" style="color: rgb(246, 246, 249)" width="24"  (click)='editClick(project.id)' /></td>
+                <td>
+                    <input type="button" value="Delete" src="../../assets/trash.jpg" width="32" class="btn btn-danger" (click)='removeClick(project.id)' />
                 </td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td>
 
             </tr>
         </tbody>

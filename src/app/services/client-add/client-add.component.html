@@ -1,30 +1,36 @@
+<div class="form-center">
 <div class="container">
-    
+
     <div class=" rounded-top wrapper">
         <div class="text-center mb-4">
-        <h2 class="text-center pt-3">Add Client</h2>
+            <h2 class="text-center pt-3">Add Client</h2>
         </div>
         <form (ngSubmit)="OnSubmit()" #addForm="ngForm">
             <div class="form-floating mb-3">
-                <input type="integer" class="form-control" id="clientid" placeholder="Client Id" name="ClientId" [(ngModel)]="ClientId">
+                <input type="integer" class="form-control" id="clientid" placeholder="Client Id" name="ClientId"
+                    [(ngModel)]="ClientId">
                 <label for="floatingInput">Client Id</label>
-               </div>
-           <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="clientname" placeholder="Client Name" name="ClientName" [(ngModel)]="ClientName">
-            <label for="floatingInput">Client Name</label>
-           </div>
-           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="email" placeholder="Email" name="Email" [(ngModel)]="Email">
-            <label for="floatingInput">Email</label>
-           </div>
-           <div class="form-floating mb-3">
-            <input type="Phone-No" class="form-control" id="contact" placeholder="Contact" name="Contact" [(ngModel)]="Contact">
-            <label for="floatingInput">Contact</label>
-           </div>
-        <div class="form-floating mb-2"></div>
-           <div class="d-grid">
-            <input type="submit"  class="btn" value="Add">
-           </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="clientname" placeholder="Client Name" name="ClientName"
+                    [(ngModel)]="ClientName">
+                <label for="floatingInput">Client Name</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="email" placeholder="Email" name="Email"
+                    [(ngModel)]="Email">
+                <label for="floatingInput">Email</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="Phone-No" class="form-control" id="contact" placeholder="Contact" name="Contact"
+                    [(ngModel)]="Contact">
+                <label for="floatingInput">Contact</label>
+            </div>
+            <div class="form-floating mb-2"></div>
+            <div class="d-grid">
+                <input type="submit" class="btn" value="Add">
+            </div>
         </form>
     </div>
+</div>
 </div>

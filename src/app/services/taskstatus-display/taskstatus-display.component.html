@@ -14,13 +14,13 @@
             <tr>
                 <th>Status Name</th>
                 <th>Type</th>
-                <th>Action</th>
+               
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let address of addresses ">
-                <td> {{ address.StatusName }} </td>
-                <td> {{ address.type }} </td>
+            <tr *ngFor="let taskstatus of taskstatuses ">
+                <td> {{ taskstatus.statusname }} </td>
+                <td> {{ taskstatus.type }} </td>
                 <td><button type="button" class="btn btn-primary" routerLink="..//localhost:9090/user">Edit</button>
                 </td>
                 <td><button type="button" class="btn btn-danger">Delete</button></td>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
@@ -7,21 +7,29 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./taskhistory.component.css']
 })
 export class TaskhistoryComponent {
-  addresses : any = [];
+  histories : any = [];
 
   @Output() editEvent= new EventEmitter<any>();
   constructor(private http: HttpClient) {
-        this.http.get('http://localhost:9090/taskhistory').subscribe(data=>this.showData(data) );
-     }
-     
+    var user=JSON.parse(localStorage.getItem("user")||"{}");
+    let api_key=user.token;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${api_key}`
+    });
+
+    const requestOptions = { headers: headers };
+    this.http.get('http://localhost:9090/taskhistory', requestOptions).subscribe(data => this.showData(data));
+  }
+
 
   ngOnInit(): void {
- 
+
   }
- 
+
   showData(data:any){
-      this.addresses=data;
-      console.log(this.addresses[0]);
+      this.histories=data;
+
   }
   editClick(id: number) {
     console.log(id);
@@ -32,7 +40,4 @@ export class TaskhistoryComponent {
   removeClick(id: number) {
     this.http.delete('http://localhost:9090/taskhistory'+id).subscribe(data=>{location.reload() ; });
   }
-
-
-
 }

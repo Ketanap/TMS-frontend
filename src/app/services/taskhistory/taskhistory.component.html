@@ -14,15 +14,15 @@
                 <th>Change Date</th>
                 <th>FromStatus Id</th>
                 <th>ToStatus Id</th>
-                <th>Action</th>
+               
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let address of addresses ">
-                <td> {{ address.TaskId }} </td>
-                <td> {{ address.ChangeDate }} </td>
-                <td> {{ address.FromStatusId }} </td>
-                <td> {{ address.ToStatusId }} </td>
+            <tr *ngFor="let history of histories ">
+                <td> {{ history.taskid }} </td>
+                <td> {{ history.changedate }} </td>
+                <td> {{ history.fromstatusid }} </td>
+                <td> {{ history.tostatusid }} </td>
                 <td><button type="button" class="btn btn-primary" routerLink="..//localhost:9090/user">Edit</button>
                 </td>
                 <td><button type="button" class="btn btn-danger">Delete</button></td>

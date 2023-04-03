@@ -20,19 +20,19 @@
                 <th>Actual Time</th>
                 <th>Due Date</th>
                 <th>Complete Date</th>
-                <th>Action</th>
+                
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let address of addresses ">
-                <td> {{ address.Taskdate}} </td>
-                <td> {{ address.UserId }} </td>
-                <td> {{ address.ProjectId }} </td>
-                <td> {{ address.StatusId }} </td>
-                <td> {{ address.ExpectedTime }} </td>
-                <td> {{ address.ActualTime }} </td>
-                <td> {{ address.DueDate }} </td>
-                <td> {{ address.CompleteDate }} </td>
+            <tr *ngFor="let task of tasks ">
+                <td> {{ task.taskdate}} </td>
+                <td> {{ task.userid }} </td>
+                <td> {{ task.projectid }} </td>
+                <td> {{ task.statusid }} </td>
+                <td> {{ task.expectedtime }} </td>
+                <td> {{ task.actualtime }} </td>
+                <td> {{ task.duedate }} </td>
+                <td> {{ task.completedate }} </td>
                 <td><button type="button" class="btn btn-primary" routerLink="..//localhost:9090/user">Edit</button>
                 </td>
                 <td><button type="button" class="btn btn-danger">Delete</button></td>
