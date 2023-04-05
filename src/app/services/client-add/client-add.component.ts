@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -16,8 +16,16 @@ export class ClientAddComponent {
 
   ngOnInit() { }
   OnSubmit() {
+    var user=JSON.parse(localStorage.getItem("user")||"{}");
+    let api_key=user.token;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${api_key}`
+    });
+    const requestOptions = { headers: headers };
+    console.log(headers);
     this.http.post('http://localhost:9090/client',
-      {clientid: this.ClientId, clientname: this.ClientName, email: this.Email,contact: this.Contact, roleid: 2 })
+      {clientid: this.ClientId, clientname: this.ClientName, email: this.Email,contact: this.Contact, roleid: 2 },requestOptions)
       .subscribe(
         data => { location.reload(); }
       );
