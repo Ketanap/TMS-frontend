@@ -19,14 +19,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let client of clients ">
+            <tr *ngFor="let client of clients">
                 <td> {{ client.clientname }} </td>
                 <td> {{ client.email }} </td>
                 <td> {{ client.contact }} </td>
-                <td><button type="button" class="btn btn-primary" routerLink="..//localhost:9090/user">Edit</button>
-                </td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td>
-
+                <td><button type="button" class="btn btn-primary" routerLink="..//localhost:9090/user">Edit</button></td>
+                <td><button type="button" class="btn btn-danger"  (click)='removeClick(client.id)'>Delete</button></td>
             </tr>
         </tbody>
     </table>

@@ -12,5 +12,8 @@ export class PostService {
   getPosts(){
     return this.httpClient.get(this.url);
   }
+  removeClick(){
+    return this.httpClient.delete(this.url)
+  }
    
 }

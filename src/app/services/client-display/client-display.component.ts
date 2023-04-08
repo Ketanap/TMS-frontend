@@ -1,4 +1,4 @@
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
@@ -7,12 +7,15 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./client-display.component.css']
 })
 export class ClientDisplayComponent {
-  clients : any = [];
+  clients: any = [];
 
-  @Output() editEvent= new EventEmitter<any>();
+  @Output() editEvent = new EventEmitter<any>();
+  ClientName: any;
+  Email: any;
+  Contact: any;
   constructor(private http: HttpClient) {
-    var user=JSON.parse(localStorage.getItem("user")||"{}");
-    let api_key=user.token;
+    var user = JSON.parse(localStorage.getItem("user") || "{}");
+    let api_key = user.token;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${api_key}`
@@ -22,23 +25,21 @@ export class ClientDisplayComponent {
     this.http.get('http://localhost:9090/client', requestOptions).subscribe(data => this.showData(data));
   }
 
-
   ngOnInit(): void {
-
   }
 
-  showData(data:any){
-      this.clients=data;
-
+  showData(data: any) {
+    this.clients = data;
   }
+
   editClick(id: number) {
-    console.log(id);
-    this.editEvent.emit(id);
-    //location.reload();
   }
 
-  removeClick(id: number) {
-    this.http.delete('http://localhost:9090/client'+id).subscribe(data=>{location.reload() ; });
+  removeClick(clientid:string) {
+    this.http.delete(clientid).subscribe();
   }
 
 }
+
+
+

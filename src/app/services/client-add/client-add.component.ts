@@ -8,7 +8,7 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./client-add.component.css']
 })
 export class ClientAddComponent {
-  @Input() ClientId = "";
+  @Input()
   ClientName = "";
   Email = "";
   Contact = "";
@@ -25,7 +25,7 @@ export class ClientAddComponent {
     const requestOptions = { headers: headers };
     console.log(headers);
     this.http.post('http://localhost:9090/client',
-      {clientid: this.ClientId, clientname: this.ClientName, email: this.Email,contact: this.Contact, roleid: 2 },requestOptions)
+       {clientname: this.ClientName, email: this.Email,contact: this.Contact, roleid: 2 },requestOptions)
       .subscribe(
         data => { location.reload(); }
       );
