@@ -37,8 +37,17 @@ export class ProjectDisplayComponent {
     //location.reload();
   }
 
-  removeClick(id: number) {
-    this.http.delete('http://localhost:9090/project'+id).subscribe(data=>{location.reload() ; });
+  removeClick(projectid: string) {
+    var user = JSON.parse(localStorage.getItem("user") || "{}");
+    let api_key = user.token;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${api_key}`
+    });
+
+    const requestOptions = { headers: headers };
+    console.log(projectid)
+    this.http.delete('http://localhost:9090/project/'+projectid,requestOptions).subscribe(data=>{location.reload() ; });
   }
 
 }

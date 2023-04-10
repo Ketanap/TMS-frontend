@@ -36,7 +36,16 @@ export class ClientDisplayComponent {
   }
 
   removeClick(clientid:string) {
-    this.http.delete('http://localhost:9090/client/'+clientid).subscribe(data=>{location.reload() ; });
+    var user = JSON.parse(localStorage.getItem("user") || "{}");
+    let api_key = user.token;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${api_key}`
+    });
+
+    const requestOptions = { headers: headers };
+    console.log(clientid);
+    this.http.delete('http://localhost:9090/client/'+clientid,requestOptions ).subscribe(data=>{location.reload() ; });
   }
 
 }

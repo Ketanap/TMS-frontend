@@ -14,6 +14,8 @@
             <tr>
                 <th>Project Name</th>
                 <th>Client Id</th>
+                <td>Edit</td>
+                <td>Delete</td>
                
             </tr>
         </thead>
@@ -23,8 +25,8 @@
                 <td> {{ project.clientid }} </td>
                 <td><input type="button"  value="Edit" src="../../assets/edit.png" class="btn btn-primary" style="color: rgb(246, 246, 249)" width="24"  (click)='editClick(project.id)' /></td>
                 <td>
-                    <input type="button" value="Delete" src="../../assets/trash.jpg" width="32" class="btn btn-danger" (click)='removeClick(project.id)' />
-                </td>
+                    <td><button type="button" class="btn btn-danger"  (click)='removeClick(project.projectid)'>Delete</button></td>
+                
 
             </tr>
         </tbody>

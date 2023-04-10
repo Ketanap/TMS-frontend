@@ -12,14 +12,14 @@
     <table class="table table-striped ">
         <thead class="thead-inverse">
             <tr>
-                <th>Task Date</th>
-                <th>User Id</th>
-                <th>Project Id</th>
-                <th>Status Id</th>
-                <th>Expected Time</th>
-                <th>Actual Time</th>
-                <th>Due Date</th>
-                <th>Complete Date</th>
+                <td>Task Date</td>
+                <td>User Id</td>
+                <td>Project Id</td>
+                <td>Status Id</td>
+                <td>Expected Time</td>
+                <td>Actual Time</td>
+                <td>Due Date</td>
+                <td>Complete Date</td>
                 
             </tr>
         </thead>
@@ -35,8 +35,7 @@
                 <td> {{ task.completedate }} </td>
                 <td><button type="button" class="btn btn-primary" routerLink="..//localhost:9090/user">Edit</button>
                 </td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td>
-
+                <td><button type="button" class="btn btn-danger"  (click)='removeClick(task.taskid)'>Delete</button></td>
             </tr>
         </tbody>
     </table>

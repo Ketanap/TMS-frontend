@@ -37,8 +37,16 @@ export class TaskDisplayComponent {
     //location.reload();
   }
 
-  removeClick(id: number) {
-    this.http.delete('http://localhost:9090/task'+id).subscribe(data=>{location.reload() ; });
+  removeClick(taskid: string) {
+    var user=JSON.parse(localStorage.getItem("user")||"{}");
+    let api_key=user.token;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${api_key}`
+    });
+
+    const requestOptions = { headers: headers };
+    this.http.delete('http://localhost:9090/task/'+taskid,requestOptions).subscribe(data=>{location.reload() ; });
   }
 
 }

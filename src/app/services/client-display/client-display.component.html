@@ -15,7 +15,8 @@
                 <th>Client Name</th>
                 <th>Email</th>
                 <th>Contact</th>
-                
+                <td>Edit</td>
+                <td>Delete</td>
             </tr>
         </thead>
         <tbody>
@@ -23,8 +24,9 @@
                 <td> {{ client.clientname }} </td>
                 <td> {{ client.email }} </td>
                 <td> {{ client.contact }} </td>
-                <td><button type="button" class="btn btn-primary" routerLink="..//localhost:9090/user">Edit</button></td>
-                <td><button type="button" class="btn btn-danger"  (click)='removeClick(client.id)'>Delete</button></td>
+                <td><button type="button" class="btn btn-primary" routerLink="../clientadd" [queryParams]="{id: client.clientid}">Edit</button></td>
+                <!-- <td><a href="" ></a></td> -->
+                <td><button type="button" class="btn btn-danger"  (click)='removeClick(client.clientid)'>Delete</button></td>
             </tr>
         </tbody>
     </table>
