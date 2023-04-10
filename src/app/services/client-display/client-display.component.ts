@@ -36,7 +36,7 @@ export class ClientDisplayComponent {
   }
 
   removeClick(clientid:string) {
-    this.http.delete(clientid).subscribe();
+    this.http.delete('http://localhost:9090/client/'+clientid).subscribe(data=>{location.reload() ; });
   }
 
 }
