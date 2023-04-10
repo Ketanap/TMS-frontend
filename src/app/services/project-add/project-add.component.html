@@ -1,6 +1,10 @@
-<div class="container">
-    <div class="text-center mb-4">
-    <h2 class="text-center pt-3">Add Project</h2>
+<div class="container" style="width:100vw">
+    <div>
+    <h2>Project information</h2>
+    </div>
+    <br>
+    <div>
+        <button type="button" class="btn" routerLink="../project">View</button>
     </div>
     <form (ngSubmit)="OnSubmit()" #addForm="ngForm">
         <div class="mb-3">     
@@ -9,8 +13,8 @@
         <div class="mb-3">   
             <input type="integer" class="form-control" id="clientid" placeholder="Client Id" name="ClientId" [(ngModel)]="ClientId">
         </div>
-        <div class="d-grid">
-        <input type="submit" class="btn" value="Add">
+        <div>
+        <input type="submit" class="btn" value="Save">
         </div>
     </form>
 </div>

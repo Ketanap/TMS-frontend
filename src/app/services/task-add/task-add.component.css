@@ -1,14 +1,23 @@
 .container{
   align-items: center !important;
   width: 120mm;
-  box-shadow: 20px 20px 50px grey;
+  margin-left: 50px;
 }
 .btn{
   background-color: #243e56;
   color: #d5dddf;
   margin-bottom: 15px;
+  margin-left:20px;
 }
 .btn:hover{
   background-color: #95bccc;
   color: black;
+}
+form{
+  box-shadow: 20px 20px 50px grey;
+}
+.mb-3{
+  margin-left: 20px;
+  padding-top: 10px;
+  margin-right: 20px;
 }

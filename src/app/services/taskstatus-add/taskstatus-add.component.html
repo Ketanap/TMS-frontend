@@ -1,17 +1,22 @@
-<div class="container">
-            <div class="text-center mb-4">
-        <h2 class="text-center pt-3">Add TaskStatus</h2>
-        </div>
-        <form (ngSubmit)="OnSubmit()" #addForm="ngForm">
-           <div class="mb-3">
-            <input type="text" class="form-control" id="statusname" placeholder="Status Name" name="StatusName" [(ngModel)]="StatusName">
-           </div>
-           <div class="mb-3">
-            <input type="text" class="form-control" id="type" placeholder="Type" name="Type" [(ngModel)]="Type">
-           </div>
-        <div class="mb-2"></div>
-           <div class="d-grid">
-            <input type="submit"  class="btn" value="Add">
-           </div>
-        </form>
+<div class="container" style="width:100vw">
+   <div>
+      <h2>TaskStatus information</h2>
+   </div>
+   <br>
+   <div>
+      <button type="button" class="btn" routerLink="../taskstatus">View</button>
+   </div>
+   <form (ngSubmit)="OnSubmit()" #addForm="ngForm">
+      <div class="mb-3">
+         <input type="text" class="form-control" id="statusname" placeholder="Status Name" name="StatusName"
+            [(ngModel)]="StatusName">
+      </div>
+      <div class="mb-3">
+         <input type="text" class="form-control" id="type" placeholder="Type" name="Type" [(ngModel)]="Type">
+      </div>
+      <div class="mb-2"></div>
+      <div>
+         <input type="submit" class="btn" value="Save">
+      </div>
+   </form>
 </div>

@@ -10,6 +10,8 @@ export class ProjectDisplayComponent {
   projects : any = [];
 
   @Output() editEvent= new EventEmitter<any>();
+  ProjectName: any;
+  ClientId: any;
   constructor(private http: HttpClient) {
     var user=JSON.parse(localStorage.getItem("user")||"{}");
     let api_key=user.token;
@@ -32,9 +34,7 @@ export class ProjectDisplayComponent {
 
   }
   editClick(id: number) {
-    console.log(id);
-    this.editEvent.emit(id);
-    //location.reload();
+    
   }
 
   removeClick(projectid: string) {

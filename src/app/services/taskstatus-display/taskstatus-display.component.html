@@ -6,16 +6,16 @@
         <h3>Task Status</h3>
     </div>
     <br>
-    <a href="taskstatusadd" class="btn btn-primary">Add</a>
+    <a href="taskstatusadd" class="btn">Add</a>
     <br>
     <br>
     <table class="table table-striped ">
         <thead class="thead-inverse">
             <tr>
-                <td>Status Name</td>
-                <td>Type</td>
-                <td>Edit</td>
-                <td>Delete</td>
+                <th>Status Name</th>
+                <th>Type</th>
+                <th>Edit</th>
+                <th>Delete</th>
                
             </tr>
         </thead>
@@ -23,9 +23,8 @@
             <tr *ngFor="let taskstatus of taskstatuses ">
                 <td> {{ taskstatus.statusname }} </td>
                 <td> {{ taskstatus.type }} </td>
-                <td><button type="button" class="btn btn-primary" routerLink="..//localhost:9090/user">Edit</button>
-                </td>
-                <td><button type="button" class="btn btn-danger"  (click)='removeClick(taskstatus.statusid)'>Delete</button></td>
+                <td><button type="button" class="btn" routerLink="../taskstatusadd" [queryParams]="{id: taskstatus.statusid}">Edit</button></td>
+                <td><button type="button" class="btn"  (click)='removeClick(taskstatus.statusid)'>Delete</button></td>
 
             </tr>
         </tbody>

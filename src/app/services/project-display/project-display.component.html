@@ -6,7 +6,7 @@
         <h3>Project</h3>
     </div>
     <br>
-    <a href="projectadd" class="btn btn-primary">Add</a>
+    <a href="projectadd" class="btn">Add</a>
     <br>
     <br>
     <table class="table table-striped ">
@@ -14,8 +14,8 @@
             <tr>
                 <th>Project Name</th>
                 <th>Client Id</th>
-                <td>Edit</td>
-                <td>Delete</td>
+                <th>Edit</th>
+                <th>Delete</th>
                
             </tr>
         </thead>
@@ -23,11 +23,8 @@
             <tr *ngFor="let project of projects ">
                 <td> {{ project.projectname }} </td>
                 <td> {{ project.clientid }} </td>
-                <td><input type="button"  value="Edit" src="../../assets/edit.png" class="btn btn-primary" style="color: rgb(246, 246, 249)" width="24"  (click)='editClick(project.id)' /></td>
-                <td>
-                    <td><button type="button" class="btn btn-danger"  (click)='removeClick(project.projectid)'>Delete</button></td>
-                
-
+                <td><button type="button" class="btn" routerLink="../projectadd" [queryParams]="{id: project.projectid}">Edit</button></td>
+                <td><button type="button" class="btn"  (click)='removeClick(project.projectid)'>Delete</button></td>           
             </tr>
         </tbody>
     </table>

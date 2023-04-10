@@ -1,26 +1,27 @@
 <link rel="stylesheet" href="task-display.component.css">
 
-
-<div class="container" >
+<div class="container" style="width:100vw">
     <div>
         <h3>Task</h3>
     </div>
     <br>
-    <a href="taskadd" class="btn btn-primary">Add</a>
+    <a href="taskadd" class="btn">Add</a>
     <br>
     <br>
     <table class="table table-striped ">
         <thead class="thead-inverse">
             <tr>
-                <td>Task Date</td>
-                <td>User Id</td>
-                <td>Project Id</td>
-                <td>Status Id</td>
-                <td>Expected Time</td>
-                <td>Actual Time</td>
-                <td>Due Date</td>
-                <td>Complete Date</td>
-                
+                <th>Task Date</th>
+                <th>User Id</th>
+                <th>Project Id</th>
+                <th>Status Id</th>
+                <th>Expected Time</th>
+                <th>Actual Time</th>
+                <th>Due Date</th>
+                <th>Complete Date</th>
+                <th>Edit</th>
+                <th>Delete</th>
+
             </tr>
         </thead>
         <tbody>
@@ -33,9 +34,9 @@
                 <td> {{ task.actualtime }} </td>
                 <td> {{ task.duedate }} </td>
                 <td> {{ task.completedate }} </td>
-                <td><button type="button" class="btn btn-primary" routerLink="..//localhost:9090/user">Edit</button>
-                </td>
-                <td><button type="button" class="btn btn-danger"  (click)='removeClick(task.taskid)'>Delete</button></td>
+                <td><button type="button" class="btn" routerLink="../taskadd"
+                        [queryParams]="{id: task.taskid}">Edit</button></td>
+                <td><button type="button" class="btn" (click)='removeClick(task.taskid)'>Delete</button></td>
             </tr>
         </tbody>
     </table>
