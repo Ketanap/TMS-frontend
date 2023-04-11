@@ -1,40 +1,79 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-task-add',
   templateUrl: './task-add.component.html',
   styleUrls: ['./task-add.component.css']
 })
-export class TaskAddComponent {
-  @Input() 
+export class TaskAddComponent implements OnInit{
+  @Input()
   TaskDate = "";
   UserId = "";
   ProjectId = "";
-  StatusId ="";
-  ExpectedTime ="";
+  StatusId = "";
+  ExpectedTime = "";
   ActualTime = "";
   DueDate = "";
-  CompletedDate ="";
-  constructor(private http: HttpClient) { }
+  CompletedDate = "";
+  data = {};
+  Taskid: any;
+  constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.route.queryParams
+      .subscribe(params => {
+        console.log(params); // { orderby: "price" }
+        this.Taskid = params['id'];
+        var user = JSON.parse(localStorage.getItem("user") || "{}");
+        let api_key = user.token;
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${api_key}`
+        });
+
+        const requestOptions = { headers: headers };
+        this.http.get('http://localhost:9090/task/' + this.Taskid, requestOptions).subscribe(data => this.showData(data));
+
+      }
+      );
+  }
+  showData(data: any) {
+    this.TaskDate = data.taskdate;
+    this.UserId = data.userid;
+    this.ProjectId = data.projectid;
+    this.StatusId = data.statusid;
+    this.ExpectedTime = data.expectedtime;
+    this.ActualTime = data.actualtime;
+    this.DueDate = data.duedate;
+    this.CompletedDate = data.completeddate;
+
+  }
   OnSubmit() {
-    var user=JSON.parse(localStorage.getItem("user")||"{}");
-    let api_key=user.token;
+    var user = JSON.parse(localStorage.getItem("user") || "{}");
+    let api_key = user.token;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${api_key}`
     });
     const requestOptions = { headers: headers };
     console.log(headers);
-    this.http.post('http://localhost:9090/task',
-      {taskdate: this.TaskDate, userid: this.UserId,projectid: this.ProjectId, statusid: this.StatusId,expectedtime: this.ExpectedTime,actualtime: this.ActualTime, duedate: this.DueDate, completeddate: this.CompletedDate, roleid: 2 },requestOptions)
-      .subscribe(
-        data => { location.reload(); }
-      );
+    if (this.Taskid) {
+      this.http.put('http://localhost:9090/project/' + this.Taskid,
+      { taskdate: this.TaskDate, userid: this.UserId, projectid: this.ProjectId, statusid: this.StatusId, expectedtime: this.ExpectedTime, actualtime: this.ActualTime, duedate: this.DueDate, completeddate: this.CompletedDate, roleid: 2 }, requestOptions)
+        .subscribe(
+          data => { location.reload(); }
+        );
+      this.http.post('http://localhost:9090/task',
+        { taskdate: this.TaskDate, userid: this.UserId, projectid: this.ProjectId, statusid: this.StatusId, expectedtime: this.ExpectedTime, actualtime: this.ActualTime, duedate: this.DueDate, completeddate: this.CompletedDate, roleid: 2 }, requestOptions)
+        .subscribe(
+          data => { location.reload(); }
+        );
+    }
+
+
+
   }
-  
-
-
 }

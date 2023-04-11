@@ -1,18 +1,41 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-taskstatus-add',
   templateUrl: './taskstatus-add.component.html',
   styleUrls: ['./taskstatus-add.component.css']
 })
-export class TaskstatusAddComponent {
+export class TaskstatusAddComponent implements OnInit {
   @Input()
   StatusName = "";
   Type = "";
-  constructor(private http: HttpClient) { }
-
-  ngOnInit() { }
+  Statusid: any;
+  data ={};
+  constructor(private http: HttpClient,private route: ActivatedRoute) { }
+  ngOnInit() { 
+    this.route.queryParams
+      .subscribe(params => {
+        console.log(params); // { orderby: "price" }
+        this.Statusid=params['id'];
+        var user = JSON.parse(localStorage.getItem("user") || "{}");
+        let api_key = user.token;
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${api_key}`
+        });
+    
+        const requestOptions = { headers: headers };
+        this.http.get('http://localhost:9090/taskstatus/'+this.Statusid, requestOptions).subscribe(data =>this.showData(data));
+    
+      }
+    );
+  }
+  showData(data: any){
+    this.StatusName = data.statusname;
+    this.Type = data.type;
+  }
   OnSubmit() {
     var user=JSON.parse(localStorage.getItem("user")||"{}");
     let api_key=user.token;
@@ -22,11 +45,18 @@ export class TaskstatusAddComponent {
     });
     const requestOptions = { headers: headers };
     console.log(headers);
+    if (this.Statusid) {
+      this.http.put('http://localhost:9090/taskstatus/' + this.Statusid,
+      {  statusname: this.StatusName, type: this.Type, roleid: 2 },requestOptions)
+        .subscribe(
+          data => { location.reload(); }
+        );
+    } else {
     this.http.post('http://localhost:9090/taskstatus',
       {  statusname: this.StatusName, type: this.Type, roleid: 2 },requestOptions)
       .subscribe(
         data => { location.reload(); }
       );
-  }
+  }}
 
 }

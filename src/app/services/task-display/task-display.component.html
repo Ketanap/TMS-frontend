@@ -34,9 +34,8 @@
                 <td> {{ task.actualtime }} </td>
                 <td> {{ task.duedate }} </td>
                 <td> {{ task.completedate }} </td>
-                <td><button type="button" class="btn" routerLink="../taskadd"
-                        [queryParams]="{id: task.taskid}">Edit</button></td>
-                <td><button type="button" class="btn" (click)='removeClick(task.taskid)'>Delete</button></td>
+                <td><button type="button" id="boot-icon" class="bi bi-pencil-square" style="font-size: 25px; border: 0px ; color: rgb(38, 101, 227); background: none;" routerLink="../taskadd" [queryParams]="{id: task.taskid}"></button></td>
+                <td><button type="button" id="boot-icon" class="bi bi-trash" style="font-size: 25px; border: 0px solid; color:rgb(192 60 73); background: none;" (click)='removeClick(task.taskid)'></button></td>
             </tr>
         </tbody>
     </table>

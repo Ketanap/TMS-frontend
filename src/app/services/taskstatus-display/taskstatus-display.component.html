@@ -23,8 +23,8 @@
             <tr *ngFor="let taskstatus of taskstatuses ">
                 <td> {{ taskstatus.statusname }} </td>
                 <td> {{ taskstatus.type }} </td>
-                <td><button type="button" class="btn" routerLink="../taskstatusadd" [queryParams]="{id: taskstatus.statusid}">Edit</button></td>
-                <td><button type="button" class="btn"  (click)='removeClick(taskstatus.statusid)'>Delete</button></td>
+                <td><button type="button" id="boot-icon" class="bi bi-pencil-square" style="font-size: 25px; border: 0px ; color: rgb(38, 101, 227); background: none;" routerLink="../taskstatusadd" [queryParams]="{id: taskstatus.statusid}"></button></td>
+                <td><button type="button" id="boot-icon" class="bi bi-trash" style="font-size: 25px; border: 0px solid; color:rgb(192 60 73); background: none;"  (click)='removeClick(taskstatus.statusid)'></button></td>
 
             </tr>
         </tbody>
