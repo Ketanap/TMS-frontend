@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -14,8 +14,10 @@ export class ProjectAddComponent implements OnInit{
   ClientId = "";
   Projectid: any;
   data={};
+  
 
-  constructor(private http: HttpClient,private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
+
 
   ngOnInit() {
     this.route.queryParams
@@ -52,13 +54,25 @@ export class ProjectAddComponent implements OnInit{
       this.http.put('http://localhost:9090/project/' + this.Projectid,
         { projectname: this.ProjectName, clientid: this.ClientId, roleid: 2 }, requestOptions)
         .subscribe(
-          data => { location.reload(); }
+          data => { 
+            console.log(data);
+            this.router.navigate(['../project']);
+          },
+          error => {
+            console.log(error);
+          }
         );
     } else {
       this.http.post('http://localhost:9090/project',
         { projectname: this.ProjectName, clientid: this.ClientId, roleid: 2 }, requestOptions)
         .subscribe(
-          data => { location.reload(); }
+          data => { 
+            console.log(data);
+            this.router.navigate(['../project']);
+          },
+          error => {
+            console.log(error);
+          }
         );
     }
 

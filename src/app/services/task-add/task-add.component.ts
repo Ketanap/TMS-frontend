@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TaskAddComponent implements OnInit{
   @Input()
+  Taskid= "";
   TaskDate = "";
   UserId = "";
   ProjectId = "";
@@ -19,8 +20,8 @@ export class TaskAddComponent implements OnInit{
   DueDate = "";
   CompletedDate = "";
   data = {};
-  Taskid: any;
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.queryParams
@@ -61,15 +62,28 @@ export class TaskAddComponent implements OnInit{
     const requestOptions = { headers: headers };
     console.log(headers);
     if (this.Taskid) {
-      this.http.put('http://localhost:9090/project/' + this.Taskid,
+      this.http.put('http://localhost:9090/task/' + this.Taskid,
       { taskdate: this.TaskDate, userid: this.UserId, projectid: this.ProjectId, statusid: this.StatusId, expectedtime: this.ExpectedTime, actualtime: this.ActualTime, duedate: this.DueDate, completeddate: this.CompletedDate, roleid: 2 }, requestOptions)
         .subscribe(
-          data => { location.reload(); }
+          data => { 
+            console.log(data);
+            this.router.navigate(['../task']);
+          },
+          error => {
+            console.log(error);
+          }
         );
+    }else{
       this.http.post('http://localhost:9090/task',
         { taskdate: this.TaskDate, userid: this.UserId, projectid: this.ProjectId, statusid: this.StatusId, expectedtime: this.ExpectedTime, actualtime: this.ActualTime, duedate: this.DueDate, completeddate: this.CompletedDate, roleid: 2 }, requestOptions)
         .subscribe(
-          data => { location.reload(); }
+          data => {
+            console.log(data);
+            this.router.navigate(['../task']);
+          },
+          error => {
+            console.log(error);
+          }
         );
     }
 
