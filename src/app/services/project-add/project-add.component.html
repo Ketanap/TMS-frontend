@@ -1,21 +1,24 @@
 <div class="container" style="width:100vw">
     <div>
-    <h2>Project information</h2>
+        <h2>Project information</h2>
     </div>
     <br>
     <div>
         <button type="button" class="btn" routerLink="../project">View</button>
     </div>
     <form (ngSubmit)="OnSubmit()" #addForm="ngForm">
-        <div class="mb-3">     
-            <input type="text" class="form-control" id="projectname" placeholder="Project Name" name="ProjectName" [(ngModel)]="ProjectName">
-        </div>  
-        <div class="mb-3">   
-            <input type="integer" class="form-control" id="clientid" placeholder="Client Id" name="ClientId" [(ngModel)]="ClientId">
+        <div class="mb-3">
+            <input type="text" class="form-control" id="projectname" placeholder="Project Name" name="ProjectName"
+                [(ngModel)]="ProjectName">
+        </div>
+        <div class="mb-3">
+            <label for="projectid">Client Id</label>
+            <select class="form-select" id="clientid" name="ClientId" placeholder="ClientId" [(ngModel)]="ClientId">
+                <option *ngFor="let client of Client" [value]="client.clientid">{{ client.clientname }}</option>
+            </select>
         </div>
         <div>
-        <input type="submit" class="btn" value="Save">
+            <input type="submit" class="btn" value="Save">
         </div>
     </form>
 </div>
-

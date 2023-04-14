@@ -12,7 +12,9 @@ export class ProjectAddComponent implements OnInit{
   @Input()
   ProjectName = "";
   ClientId = "";
-  Projectid: any;
+  Client: any = [];
+  Projectid= "";
+
   data={};
   
 
@@ -33,9 +35,14 @@ export class ProjectAddComponent implements OnInit{
     
         const requestOptions = { headers: headers };
         this.http.get('http://localhost:9090/project/'+this.Projectid, requestOptions).subscribe(data =>this.showData(data));
+        this.http.get('http://localhost:9090/client/', requestOptions).subscribe(data =>this.showClient(data));
     
       }
     );
+  }
+  showClient(data:any){
+    this.Client = data;
+
   }
   showData(data: any){
     this.ProjectName = data.projectname;

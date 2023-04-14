@@ -1,5 +1,6 @@
 .table {
     box-shadow: 20px 20px 50px grey;
+    text-align: center;
 }
 
 .btn {
@@ -9,9 +10,6 @@
 }
 .container{
     margin-left: 50px;
-}
-.th{
-    padding-left: 20px;
 }
 .btn:hover{
     background-color: #95bccc;

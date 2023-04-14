@@ -1,41 +1,51 @@
 <div class="container" style="width:100vw">
-    
-    
-        <div>
+    <div>
         <h2>Task information</h2>
+    </div>
+    <br>
+    <div>
+        <button type="button" class="btn" routerLink="../task">View</button>
+    </div>
+    <form (ngSubmit)="OnSubmit()" #addForm="ngForm">
+        <div class="mb-3">
+            <input type="string" class="form-control" id="taskdate" placeholder="Task Date" name="TaskDate"
+                [(ngModel)]="TaskDate">
         </div>
-        <br>
+        <div class="mb-3">
+            <input type="integer" class="form-control" id="userid" placeholder="User Id" name="UserId"
+                [(ngModel)]="UserId">
+        </div>
+        <div class="mb-3">
+            <label for="projectid">Project Id</label>
+            <select class="form-select" id="projectid" name="ProjectId" [(ngModel)]="ProjectId">
+                <option *ngFor="let project of Project" [value]="project.projectid">{{ project.projectname }}</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="statusid">Status Id</label>
+            <select class="form-select" id="statusid" name="StatusId" [(ngModel)]="StatusId">
+                <option *ngFor="let status of Status" [value]="status.statusid">{{ status.statusname }}</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <input type="integer" class="form-control" id="expectedtime" placeholder="Expected Time" name="ExpectedTime"
+                [(ngModel)]="ExpectedTime">
+        </div>
+        <div class="mb-3">
+            <input type="integer" class="form-control" id="actualtime" placeholder="Actual Time" name="ActualTime"
+                [(ngModel)]="ActualTime">
+        </div>
+        <div class="mb-3">
+            <input type="string" class="form-control" id="duedate" placeholder="Due Date" name="DueDate"
+                [(ngModel)]="DueDate">
+        </div>
+        <div class="mb-3">
+            <input type="string" class="form-control" id="completeddate" placeholder="Completed Date"
+                name="CompletedDate" [(ngModel)]="CompletedDate">
+        </div>
         <div>
-            <button type="button" class="btn" routerLink="../task">View</button>
+            <input type="submit" class="btn" value="Save">
         </div>
-        <form (ngSubmit)="OnSubmit()" #addForm="ngForm">
-           <div class="mb-3">
-            <input type="string" class="form-control" id="taskdate" placeholder="Task Date" name="TaskDate" [(ngModel)]="TaskDate">
-           </div>
-           <div class="mb-3">
-            <input type="integer" class="form-control" id="userid" placeholder="User Id" name="UserId" [(ngModel)]="UserId">
-           </div>
-           <div class="mb-3">
-            <input type="integer" class="form-control" id="projectid" placeholder="Project Id" name="ProjectId" [(ngModel)]="ProjectId"> 
-           </div>
-           <div class="mb-3">
-            <input type="integer" class="form-control" id="statusid" placeholder="Stauts Id" name="StatusId" [(ngModel)]="StatusId">
-           </div>
-           <div class="mb-3">
-            <input type="integer" class="form-control" id="expectedtime" placeholder="Expected Time" name="ExpectedTime" [(ngModel)]="ExpectedTime">
-           </div>
-           <div class="mb-3">
-            <input type="integer" class="form-control" id="actualtime" placeholder="Actual Time" name="ActualTime" [(ngModel)]="ActualTime">
-           </div>
-           <div class="mb-3">
-            <input type="string" class="form-control" id="duedate" placeholder="Due Date" name="DueDate" [(ngModel)]="DueDate">
-           </div>
-           <div class="mb-3">
-            <input type="string" class="form-control" id="completeddate" placeholder="Completed Date" name="CompletedDate" [(ngModel)]="CompletedDate">
-           </div>
-           <div>
-            <input type="submit"  class="btn" value="Save">
-           </div>
-        </form>
-    
+    </form>
 </div>

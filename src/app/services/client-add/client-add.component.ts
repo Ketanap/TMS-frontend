@@ -68,7 +68,7 @@ export class ClientAddComponent implements OnInit {
         .subscribe(
           data => {
             console.log(data);
-            this.router.navigate(['../client']);
+            this.router.navigate(['../client']); 
           },
           error => {
             console.log(error);

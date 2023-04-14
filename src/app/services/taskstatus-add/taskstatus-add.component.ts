@@ -11,7 +11,7 @@ export class TaskstatusAddComponent implements OnInit {
   @Input()
   StatusName = "";
   Type = "";
-  Statusid: any;
+  Statusid= "";
   data ={};
   
 
@@ -54,7 +54,7 @@ export class TaskstatusAddComponent implements OnInit {
           data => {
             console.log(data);
             // Navigate to taskstatus page
-            this.router.navigate(['/taskstatus']);
+            this.router.navigate(['../taskstatus']);
           },
           error => {
             console.log(error);
@@ -67,7 +67,7 @@ export class TaskstatusAddComponent implements OnInit {
         data => {
           console.log(data);
           // Navigate to taskstatus page
-          this.router.navigate(['/taskstatus']);
+          this.router.navigate(['../taskstatus']);
         },
         error => {
           console.log(error);

@@ -21,6 +21,8 @@ import { ProfileComponent } from './services/profile/profile.component';
 import { ChangePasswordComponent } from './services/change-password/change-password.component';
 import { LogoutComponent } from './services/logout/logout.component';
 import { VerticalnavComponent } from './verticalnav/verticalnav.component';
+import { ChangestatusComponent } from './services/changestatus/changestatus.component';
+import { TaskeditComponent } from './services/taskedit/taskedit.component';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import { VerticalnavComponent } from './verticalnav/verticalnav.component';
     ChangePasswordComponent,
     LogoutComponent,
     VerticalnavComponent,
+    ChangestatusComponent,
+    TaskeditComponent,
     
   ],
   imports: [
