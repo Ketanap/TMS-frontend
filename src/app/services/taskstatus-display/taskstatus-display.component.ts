@@ -10,9 +10,13 @@ export class TaskstatusDisplayComponent {
   taskstatuses : any = [];
 
   @Output() editEvent= new EventEmitter<any>();
+  Type: any;
+  StatusName: any;
+  userId: any;
+  user:any;
   constructor(private http: HttpClient) {
-    var user=JSON.parse(localStorage.getItem("user")||"{}");
-    let api_key=user.token;
+    this.user=JSON.parse(localStorage.getItem("user")||"{}");
+    let api_key=this.user.token;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${api_key}`
@@ -32,14 +36,14 @@ export class TaskstatusDisplayComponent {
 
   }
   editClick(id: number) {
-    console.log(id);
-    this.editEvent.emit(id);
-    //location.reload();
+    if (this.user.user.roleid == 1 ) { 
+      this.editEvent.emit(id);
+    }
   }
 
   removeClick(statusid: string) {
-      var user=JSON.parse(localStorage.getItem("user")||"{}");
-      let api_key=user.token;
+    if (this.user.user.roleid == 1 ) {
+      let api_key=this.user.token;
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${api_key}`
@@ -49,6 +53,10 @@ export class TaskstatusDisplayComponent {
       console.log(statusid)
     this.http.delete('http://localhost:9090/taskstatus/'+statusid,requestOptions).subscribe(data=>{location.reload() ; });
   }
+  else{
+    alert("Permission not Granted")
+  }
+}
 
 
 

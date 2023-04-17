@@ -13,9 +13,13 @@ export class ClientDisplayComponent {
   ClientName: any;
   Email: any;
   Contact: any;
+  userId: any;
+  user:any;
+  
   constructor(private http: HttpClient) {
-    var user = JSON.parse(localStorage.getItem("user") || "{}");
-    let api_key = user.token;
+    this.user = JSON.parse(localStorage.getItem("user") || "{}");
+    console.log(this.user);
+    let api_key = this.user.token;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${api_key}`
@@ -33,22 +37,26 @@ export class ClientDisplayComponent {
   }
 
   editClick(id: number) {
+    
+    if (this.user.user.roleid == 1 ) { 
+      this.editEvent.emit(id);
+    }
   }
 
-  removeClick(clientid:string) {
-    var user = JSON.parse(localStorage.getItem("user") || "{}");
-    let api_key = user.token;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${api_key}`
-    });
+  removeClick(clientid: string) {
 
-    const requestOptions = { headers: headers };
-    console.log(clientid);
-    this.http.delete('http://localhost:9090/client/'+clientid,requestOptions ).subscribe(data=>{location.reload() ; });
+    if (this.user.user.roleid == 1 ) {
+      let api_key = this.user.token;
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${api_key}`
+      });
+      const requestOptions = { headers: headers };
+      console.log(clientid);
+      this.http.delete('http://localhost:9090/client/'+clientid,requestOptions ).subscribe(data=>{location.reload() ; });
+    }else{
+      alert("Permission not Granted")
+    }
   }
 
 }
-
-
-

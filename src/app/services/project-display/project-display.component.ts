@@ -7,14 +7,16 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./project-display.component.css']
 })
 export class ProjectDisplayComponent {
-  projects : any = [];
+  projects: any = [];
 
-  @Output() editEvent= new EventEmitter<any>();
+  @Output() editEvent = new EventEmitter<any>();
   ProjectName: any;
   ClientId: any;
+  userId: any;
+  user: any;
   constructor(private http: HttpClient) {
-    var user=JSON.parse(localStorage.getItem("user")||"{}");
-    let api_key=user.token;
+    this.user = JSON.parse(localStorage.getItem("user") || "{}");
+    let api_key = this.user.token;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${api_key}`
@@ -29,26 +31,30 @@ export class ProjectDisplayComponent {
 
   }
 
-  showData(data:any){
-      this.projects=data;
+  showData(data: any) {
+    this.projects = data;
 
   }
   editClick(id: number) {
-    
+    if (this.user.user.roleid == 1) {
+      this.editEvent.emit(id);
+    }
   }
 
   removeClick(projectid: string) {
-    var user = JSON.parse(localStorage.getItem("user") || "{}");
-    let api_key = user.token;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${api_key}`
-    });
+    if (this.user.user.roleid == 1) {
+      let api_key = this.user.token;
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${api_key}`
+      });
 
-    const requestOptions = { headers: headers };
-    console.log(projectid)
-    this.http.delete('http://localhost:9090/project/'+projectid,requestOptions).subscribe(data=>{location.reload() ; });
+      const requestOptions = { headers: headers };
+      console.log(projectid)
+      this.http.delete('http://localhost:9090/project/' + projectid, requestOptions).subscribe(data => { location.reload(); });
+    } else {
+      alert("Permission not Granted")
+    }
+
   }
-
 }
-

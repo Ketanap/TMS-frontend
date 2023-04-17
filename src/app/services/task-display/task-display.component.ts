@@ -37,7 +37,7 @@ export class TaskDisplayComponent {
     //location.reload();
   }
 
-  removeClick(taskid: string) {
+  removeClick(taskid: number) {
     var user=JSON.parse(localStorage.getItem("user")||"{}");
     let api_key=user.token;
     const headers = new HttpHeaders({

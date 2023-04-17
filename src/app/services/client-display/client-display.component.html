@@ -8,7 +8,9 @@
         <h3>Client</h3>
     </div>
     <br>
-    <button type="button" class="btn" routerLink="../clientadd">Add</button>
+    <div>
+    <button type="button" class="btn" *ngIf="user.user.roleid == 1 " routerLink="../clientadd">Add</button>
+    </div>
     <br>
     <br>
     <table class="table table-striped ">
@@ -17,8 +19,8 @@
                 <th>Client Name</th>
                 <th>Email</th>
                 <th>Contact</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -26,8 +28,8 @@
                 <td> {{ client.clientname }} </td>
                 <td> {{ client.email }} </td>
                 <td> {{ client.contact }} </td>
-                <td><button type="button"   id="boot-icon" class="bi bi-pencil-square" style="font-size: 25px; border: 0px ; color: rgb(38, 101, 227); background: none;" routerLink="../clientadd" [queryParams]="{id: client.clientid}"   ></button></td>
-                <td><button type="button"  id="boot-icon" class="bi bi-trash" style="font-size: 25px; border: 0px solid; color:rgb(192 60 73); background: none;"  (click)='removeClick(client.clientid)'></button></td>
+                <td><button type="button"   id="boot-icon" *ngIf="user.user.roleid == 1 " class="bi bi-pencil-square" style="font-size: 25px; border: 0px ; color: rgb(38, 101, 227); background: none;" routerLink="../clientadd" [queryParams]="{id: client.clientid}"   ></button></td>
+                <td><button type="button"  id="boot-icon" *ngIf="user.user.roleid == 1 " class="bi bi-trash" style="font-size: 25px; border: 0px solid; color:rgb(192 60 73); background: none;"  (click)='removeClick(client.clientid)'></button></td>
             </tr>
         </tbody>
     </table>

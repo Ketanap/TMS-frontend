@@ -6,7 +6,9 @@
         <h3>Project</h3>
     </div>
     <br>
-    <a href="projectadd" class="btn">Add</a>
+    <div>
+    <a href="projectadd" *ngIf="user.user.roleid == 1 " class="btn">Add</a>
+    </div>
     <br>
     <br>
     <table class="table table-striped ">
@@ -14,8 +16,8 @@
             <tr>
                 <th>Project Name</th>
                 <th>Client Id</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th></th>
+                <th></th>
                
             </tr>
         </thead>
@@ -23,8 +25,8 @@
             <tr *ngFor="let project of projects ">
                 <td> {{ project.projectname }} </td>
                 <td> {{ project.clientid }} </td>
-                <td><button type="button" id="boot-icon" class="bi bi-pencil-square" style="font-size: 25px; border: 0px ; color: rgb(38, 101, 227); background: none;" routerLink="../projectadd" [queryParams]="{id: project.projectid}"></button></td>
-                <td><button type="button" id="boot-icon" class="bi bi-trash" style="font-size: 25px; border: 0px solid; color:rgb(192 60 73); background: none;"  (click)='removeClick(project.projectid)'></button></td>           
+                <td><button type="button" id="boot-icon" *ngIf="user.user.roleid == 1 " class="bi bi-pencil-square" style="font-size: 25px; border: 0px ; color: rgb(38, 101, 227); background: none;" routerLink="../projectadd" [queryParams]="{id: project.projectid}"></button></td>
+                <td><button type="button" id="boot-icon" *ngIf="user.user.roleid == 1 " class="bi bi-trash" style="font-size: 25px; border: 0px solid; color:rgb(192 60 73); background: none;"  (click)='removeClick(project.projectid)'></button></td>           
             </tr>
         </tbody>
     </table>
