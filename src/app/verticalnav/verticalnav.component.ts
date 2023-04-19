@@ -7,7 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./verticalnav.component.css']
 })
 export class VerticalnavComponent {
-  router: any;
+  constructor(private router: Router) {}
+
+
   
   onLogout(){
     localStorage.removeItem('user');

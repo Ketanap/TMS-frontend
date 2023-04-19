@@ -32,6 +32,7 @@ export class ProjectDisplayComponent {
   }
 
   showData(data: any) {
+     console.log(data);
     this.projects = data;
 
   }
@@ -42,6 +43,7 @@ export class ProjectDisplayComponent {
   }
 
   removeClick(projectid: string) {
+   
     if (this.user.user.roleid == 1) {
       let api_key = this.user.token;
       const headers = new HttpHeaders({

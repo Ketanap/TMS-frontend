@@ -16,9 +16,12 @@ export class ProjectAddComponent implements OnInit{
   Projectid= "";
 
   data={};
+  user: any;
   
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { 
+    this.user = JSON.parse(localStorage.getItem("user") || "{}");
+  }
 
 
   ngOnInit() {
@@ -45,8 +48,10 @@ export class ProjectAddComponent implements OnInit{
 
   }
   showData(data: any){
+    if(data) {
     this.ProjectName = data.projectname;
     this.ClientId = data.clientid;
+    }
   }
   OnSubmit() {
     var user = JSON.parse(localStorage.getItem("user") || "{}");

@@ -14,8 +14,11 @@ export class ClientAddComponent implements OnInit {
   Email = "";
   Contact = "";
   data = {};
+  user: any;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { 
+    this.user = JSON.parse(localStorage.getItem("user") || "{}");
+  }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -34,14 +37,15 @@ export class ClientAddComponent implements OnInit {
   }
 
   showData(data: any) {
+    if(data){
     this.ClientName = data.clientname;
     this.Contact = data.contact;
     this.Email = data.email;
   }
-
+  }
   OnSubmit() {
-    var user = JSON.parse(localStorage.getItem("user") || "{}");
-    let api_key = user.token;
+    this.user = JSON.parse(localStorage.getItem("user") || "{}");
+    let api_key = this.user.token;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${api_key}`

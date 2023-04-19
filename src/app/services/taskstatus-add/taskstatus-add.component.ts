@@ -35,8 +35,10 @@ export class TaskstatusAddComponent implements OnInit {
     );
   }
   showData(data: any){
+    if(data) {
     this.StatusName = data.statusname;
     this.Type = data.type;
+    }
   }
   OnSubmit() {
     var user=JSON.parse(localStorage.getItem("user")||"{}");

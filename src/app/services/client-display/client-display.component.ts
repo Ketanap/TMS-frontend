@@ -33,6 +33,7 @@ export class ClientDisplayComponent {
   }
 
   showData(data: any) {
+    console.log(data);
     this.clients = data;
   }
 

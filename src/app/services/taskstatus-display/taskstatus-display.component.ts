@@ -32,6 +32,7 @@ export class TaskstatusDisplayComponent {
   }
 
   showData(data:any){
+    console.log(data);
       this.taskstatuses=data;
 
   }

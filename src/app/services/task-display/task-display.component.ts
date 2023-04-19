@@ -10,9 +10,21 @@ export class TaskDisplayComponent {
   tasks : any = [];
 
   @Output() editEvent= new EventEmitter<any>();
+  TaskDate: any;
+  UserId: any;
+  ProjectId: any;
+  StatusId:any;
+  Description: any;
+  ExpectedTIme: any;
+  ActualTime: any;
+  DueDate: any;
+  ComletedDate: any;
+  Completed: any;
+  ChangeStatus: any;
+  user: any;
   constructor(private http: HttpClient) {
-    var user=JSON.parse(localStorage.getItem("user")||"{}");
-    let api_key=user.token;
+    this.user=JSON.parse(localStorage.getItem("user")||"{}");
+    let api_key=this.user.token;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${api_key}`
@@ -28,14 +40,15 @@ export class TaskDisplayComponent {
   }
 
   showData(data:any){
+    console.log(data);
       this.tasks=data;
 
   }
   editClick(id: number) {
-    console.log(id);
-    this.editEvent.emit(id);
-    //location.reload();
-  }
+    
+      this.editEvent.emit(id);
+    }
+  
 
   removeClick(taskid: number) {
     var user=JSON.parse(localStorage.getItem("user")||"{}");

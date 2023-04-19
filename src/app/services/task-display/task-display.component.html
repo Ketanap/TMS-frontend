@@ -12,9 +12,10 @@
         <thead class="thead-inverse">
             <tr>
                 <th>Task Date</th>
-                <th>User Id</th>
-                <th>Project Id</th>
-                <th>Status Id</th>
+                <th>User </th>
+                <th>Project </th>
+                <th>Status </th>
+                <th>Description</th>
                 <th>Expected Time</th>
                 <th>Actual Time</th>
                 <th>Due Date</th>
@@ -29,16 +30,17 @@
         <tbody>
             <tr *ngFor="let task of tasks ">
                 <td> {{ task.taskdate}} </td>
-                <td> {{ task.userid }} </td>
-                <td> {{ task.projectid }} </td>
-                <td> {{ task.statusid }} </td>
+                <td> {{ task.tblUser.username }} </td>
+                <td> {{ task.tblProject.projectname }} </td>
+                <td> {{ task.tblTaskstatus.statusname }} </td>
+                <td> {{ task.description }}</td>
                 <td> {{ task.expectedtime }} </td>
                 <td> {{ task.actualtime }} </td>
                 <td> {{ task.duedate }} </td>
                 <td> {{ task.completedate }} </td>
                 <td> {{ task.completed }}</td>
                 <td> {{ task.changestatus }}</td>
-                <td><button type="button" id="boot-icon" class="bi bi-pencil-square" style="font-size: 25px; border: 0px ; color: rgb(38, 101, 227); background: none;" routerLink="../taskadd" [queryParams]="{id: task.taskid}"></button></td>
+                <td><button type="button" id="boot-icon" class="bi bi-pencil-square" style="font-size: 25px; border: 0px ; color: rgb(38, 101, 227); background: none;" routerLink="../taskedit" [queryParams]="{id: task.taskid}"></button></td>
                 <td><button type="button" id="boot-icon" class="bi bi-trash" style="font-size: 25px; border: 0px solid; color:rgb(192 60 73); background: none;" (click)='removeClick(task.taskid)'></button></td>
             </tr>
         </tbody>

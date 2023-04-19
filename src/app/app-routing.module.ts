@@ -18,6 +18,7 @@ import { TaskAddComponent } from './services/task-add/task-add.component';
 import { VerticalnavComponent } from './verticalnav/verticalnav.component';
 import { AuthGuard } from './authGuard';
 import { TaskhistoryComponent } from './services/taskhistory/taskhistory.component';
+import { TaskeditComponent } from './services/taskedit/taskedit.component';
 
 const routes: Routes = [
   //Site routes goes here 
@@ -49,7 +50,8 @@ const routes: Routes = [
       {path:'projectadd',component:ProjectAddComponent, canActivate: [AuthGuard],},
       {path:'taskadd',component:TaskAddComponent, canActivate: [AuthGuard],},
       {path:'taskstatusadd',component:TaskstatusAddComponent, canActivate: [AuthGuard],},
-      {path:'taskhistory',component:TaskhistoryComponent, canActivate: [AuthGuard],}
+      {path:'taskhistory',component:TaskhistoryComponent, canActivate: [AuthGuard],},
+      {path:'taskedit',component:TaskeditComponent, canActivate: [AuthGuard],}
         ]
 },
 
