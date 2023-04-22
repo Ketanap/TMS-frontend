@@ -10,19 +10,19 @@
     <table class="table table-striped ">
         <thead class="thead-inverse">
             <tr>
-                <th>Task Id</th>
+                <th>Task </th>
                 <th>Change Date</th>
-                <th>FromStatus Id</th>
-                <th>ToStatus Id</th>
+                <th>FromStatus </th>
+                <th>ToStatus </th>
                
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let history of histories ">
-                <td> {{ history.taskid }} </td>
+                <td> {{ history.tbltask.taskid }} </td>
                 <td> {{ history.changedate }} </td>
-                <td> {{ history.fromstatusid }} </td>
-                <td> {{ history.tostatusid }} </td>
+                <td> {{ history.statusid }} </td>
+                <td> {{ history.completeddate }} </td>
                 <td><button type="button" class="btn btn-primary" routerLink="..//localhost:9090/user">Edit</button>
                 </td>
                 <td><button type="button" class="btn btn-danger">Delete</button></td>

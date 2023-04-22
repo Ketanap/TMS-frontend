@@ -1,0 +1,23 @@
+.container{
+    margin-left: 650px;
+}
+ .element.style{
+     font-size: 190px;
+ }
+ .profile-pic {
+   max-width: 300px;
+   border-radius: 50%;
+  
+ }
+ .info-list li {
+   margin-bottom: 10px;
+ }
+ .info-list li span {
+   font-weight: bold;
+ }
+ .about-me {
+   margin-top: 30px;
+ }
+ .about-me p {
+   font-size: 18px;
+ }

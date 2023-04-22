@@ -1,43 +1,44 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-taskhistory',
   templateUrl: './taskhistory.component.html',
   styleUrls: ['./taskhistory.component.css']
 })
-export class TaskhistoryComponent {
-  histories : any = [];
+export class TaskhistoryComponent implements OnInit {
+  tasks!: any[];
+  taskHistories!: any[];
 
-  @Output() editEvent= new EventEmitter<any>();
-  constructor(private http: HttpClient) {
-    var user=JSON.parse(localStorage.getItem("user")||"{}");
-    let api_key=user.token;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${api_key}`
-    });
-
-    const requestOptions = { headers: headers };
-    this.http.get('http://localhost:9090/taskhistory', requestOptions).subscribe(data => this.showData(data));
-  }
-
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-
+    // Fetch tasks
+    this.http.get<any[]>('http://localhost:9090/task')
+      .subscribe(tasks => {
+        this.tasks = tasks;
+        this.fetchTaskHistory();
+      }, error => {
+        console.log('Error fetching tasks: ', error);
+      });
   }
 
-  showData(data:any){
-      this.histories=data;
-
-  }
-  editClick(id: number) {
-    console.log(id);
-    this.editEvent.emit(id);
-    //location.reload();
-  }
-
-  removeClick(id: number) {
-    this.http.delete('http://localhost:9090/taskhistory'+id).subscribe(data=>{location.reload() ; });
+  fetchTaskHistory(): void {
+    // Fetch task histories
+    this.http.get<any[]>('http://localhost:9090/taskhistory')
+      .subscribe(histories => {
+        this.taskHistories = histories.map(history => {
+          // Find task by ID
+          const task = this.tasks.find(t => t.taskid === history.taskid);
+          // Extract required data
+          return {
+            taskId: history.taskid,
+            status: task ? task.status : '',
+            completedDate: history.completeddate
+          };
+        });
+      }, error => {
+        console.log('Error fetching task histories: ', error);
+      });
   }
 }

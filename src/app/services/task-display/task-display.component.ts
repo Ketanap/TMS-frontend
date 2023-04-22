@@ -43,6 +43,15 @@ export class TaskDisplayComponent {
     console.log(data);
       this.tasks=data;
 
+      for (let i = 0; i < this.tasks.length; i++) {
+        const task = this.tasks[i];
+        const taskKey = `task_${task.taskid}_completed`;
+        const completedStr = localStorage.getItem(taskKey);
+        if (completedStr !== null) {
+          task.completed = completedStr === 'true';
+        }
+      }
+
   }
   editClick(id: number) {
     
@@ -61,5 +70,12 @@ export class TaskDisplayComponent {
     const requestOptions = { headers: headers };
     this.http.delete('http://localhost:9090/task/'+taskid,requestOptions).subscribe(data=>{location.reload() ; });
   }
+
+  toggleCompleted(task: any) {
+    task.completed = !task.completed;
+    const taskKey = `task_${task.taskid}_completed`;
+    localStorage.setItem(taskKey, String(task.completed));
+  }
+  
 
 }

@@ -1,8 +1,7 @@
-import { Component, Injectable } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import{ Global } from '../../global';
 import { Router } from '@angular/router';
-import {Output,EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-signin',
