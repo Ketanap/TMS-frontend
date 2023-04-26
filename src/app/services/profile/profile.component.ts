@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-profile',
@@ -7,12 +7,13 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  profiles: any =[];
    @Output() editEvent = new EventEmitter<any>();
   Email: any;
   Phone: any;
   username: any;
-  profile: any;
   user:any;
+  Contact: any;
   
 
   constructor(private http: HttpClient) {
@@ -32,12 +33,7 @@ export class ProfileComponent implements OnInit {
 
     console.log(data);
       this.user=data;
-    if(this.user.profile) {
-      this.profile = this.user.profile;
-    this.Email = this.user.tblUser.email;
-    this.Phone = this.user.tblUser.contact;
-    this.username = this.user.tblUser.username; 
-      
-    }
+      this.user.name = data.user.user.username;
+
   }
 }

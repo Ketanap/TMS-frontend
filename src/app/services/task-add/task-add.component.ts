@@ -24,8 +24,7 @@ export class TaskAddComponent implements OnInit {
   Status: any = [];
   Project: any = [];
   data = {};
-  user:any
-
+  user:any;
 
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {

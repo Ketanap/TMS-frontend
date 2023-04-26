@@ -23,6 +23,7 @@ export class ChangestatusComponent implements OnInit {
   CompletedDate = "";
   Status: any = [];
   Project: any = [];
+  OldStatusId:any="";
   data = {};
 
 
@@ -67,6 +68,7 @@ export class ChangestatusComponent implements OnInit {
     this.UserId = data.userid;
     this.ProjectId = data.projectid;
     this.StatusId = data.statusid;
+    this.OldStatusId=data.statusid;
     this.Description = data.description;
     this.ExpectedTime = data.expectedtime;
     this.ActualTime = data.actualtime;
@@ -103,9 +105,8 @@ export class ChangestatusComponent implements OnInit {
             console.log(error);
           }
         );
-    } else {
-      this.http.post('http://localhost:9090/task/',
-        { taskdate: this.TaskDate, userid: this.UserId, projectid: this.ProjectId, statusid: this.StatusId, description: this.Description, expectedtime: this.ExpectedTime, actualtime: this.ActualTime, duedate: this.DueDate, completeddate: this.CompletedDate, roleid: 2 }, requestOptions)
+        this.http.post('http://localhost:9090/taskhistory/',
+        { changedate: this.TaskDate, taskid: this.Taskid, fromstatusid: this.OldStatusId, tostatusid: this.StatusId }, requestOptions)
         .subscribe(
           data => {
             console.log(data);
@@ -114,8 +115,8 @@ export class ChangestatusComponent implements OnInit {
           error => {
             console.log(error);
           }
-        );
-    }
+        );  
+    } 
   }
 
 
