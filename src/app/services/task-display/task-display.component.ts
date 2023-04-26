@@ -8,6 +8,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class TaskDisplayComponent {
   tasks : any = [];
+  p: number = 1; 
 
   @Output() editEvent= new EventEmitter<any>();
   TaskDate: any;

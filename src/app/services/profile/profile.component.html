@@ -1,15 +1,19 @@
-
-  <div class="container">
-    <div class="card-body ">
-      <h1 class="mb-4">User Profile</h1>
-      <span id="boot-icon" class="bi bi-person-circle" style="font-size: 250px; color: rgb(84, 84, 84);"></span>
-      <tr *ngFor="let profile of profiles ">
-        <td> {{ profile.tblUser.username }} </td>
-      </tr>
+<div class="container">
+  <div class="card-body">
+    <h1 class="mb-4">User Profile</h1>
+    <div class="profile-icon">
+      <span class="bi bi-person-circle" style="font-size: 250px; color: rgb(84, 84, 84);"></span>
     </div>
-    <div class="card-body">
-      <h2 class="mb-4">About Me</h2>
-      <p>Email: {{ Email }}</p>
-      <p>Phone: {{ Contact }}</p>
+    <div class="profile-details">
+      <p class="user">{{username}}</p>
+
+      <div class="profile-about"><br>
+        <h1 class="mb-4">About Me</h1>
+        <div *ngIf="user !== null">
+          <p>Email: {{email}}</p>
+        </div>
+        <p>Phone: {{contact}}</p>
+      </div>
     </div>
   </div>
+</div>

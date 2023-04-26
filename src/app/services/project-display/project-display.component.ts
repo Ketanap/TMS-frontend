@@ -8,6 +8,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class ProjectDisplayComponent {
   projects: any = [];
+  p: number = 1; 
 
   @Output() editEvent = new EventEmitter<any>();
   ProjectName: any;

@@ -8,11 +8,13 @@
    </div>
    <form (ngSubmit)="OnSubmit()" #addForm="ngForm">
       <div class="mb-3">
-         <input type="text" class="form-control" id="statusname" placeholder="Status Name" name="StatusName"
+         <label for="statusname" class="label">Status Name </label>
+         <input type="text" class="form-control" id="statusname" name="StatusName"
             [(ngModel)]="StatusName">
       </div>
       <div class="mb-3">
-         <input type="text" class="form-control" id="type" placeholder="Type" name="Type" [(ngModel)]="Type">
+         <label for="type" class="label">Type</label>
+         <input type="text" class="form-control" id="type" name="Type" [(ngModel)]="Type">
       </div>
       <div class="mb-2"></div>
       <div>

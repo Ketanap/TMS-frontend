@@ -1,36 +1,33 @@
-<link rel="stylesheet" href="client-display.component.css">
-<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
-
-
-<div class="container" style="width:100vw">
+ <div class="container" style="width:100vw">
     <div>
         <h3>Client</h3>
     </div>
     <br>
     <div>
     <button type="button" class="btn" *ngIf="user.user.roleid == 1 " routerLink="../clientadd">Add</button>
+    <div class="d-flex justify-content-center">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
-    <br>
     <br>
     <table class="table table-striped ">
         <thead class="thead-inverse">
-            <tr>
-                <th>Client Name</th>
-                <th>Email</th>
-                <th>Contact</th>
-                <th></th>
-                <th></th>
-            </tr>
+          <tr>
+            <th>Client Name</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th></th>
+            <th></th>
+          </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let client of clients">
-                <td> {{ client.clientname }} </td>
-                <td> {{ client.email }} </td>
-                <td> {{ client.contact }} </td>
-                <td><button type="button"   id="boot-icon" *ngIf="user.user.roleid == 1 " class="bi bi-pencil-square" style="font-size: 25px; border: 0px ; color: rgb(38, 101, 227); background: none;" routerLink="../clientadd" [queryParams]="{id: client.clientid}"   ></button></td>
-                <td><button type="button"  id="boot-icon" *ngIf="user.user.roleid == 1 " class="bi bi-trash" style="font-size: 25px; border: 0px solid; color:rgb(192 60 73); background: none;"  (click)='removeClick(client.clientid)'></button></td>
-            </tr>
+          <tr *ngFor="let client of clients | paginate: { itemsPerPage: 10, currentPage: p }">
+            <td> {{ client.clientname }} </td>
+            <td> {{ client.email }} </td>
+            <td> {{ client.contact }} </td>
+            <td><button type="button" id="boot-icon" *ngIf="user.user.roleid == 1 " class="bi bi-pencil-square" style="font-size: 25px; border: 0px ; color: rgb(38, 101, 227); background: none;" routerLink="../clientadd" [queryParams]="{id: client.clientid}"></button></td>
+            <td><button type="button" id="boot-icon" *ngIf="user.user.roleid == 1 " class="bi bi-trash" style="font-size: 25px; border: 0px solid; color:rgb(192 60 73); background: none;" (click)='removeClick(client.clientid)'></button></td>
+          </tr>
         </tbody>
-    </table>
-</div>
+      </table>
+      </div>
+      

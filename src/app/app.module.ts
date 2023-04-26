@@ -22,6 +22,15 @@ import { LogoutComponent } from './services/logout/logout.component';
 import { VerticalnavComponent } from './verticalnav/verticalnav.component';
 import { ChangestatusComponent } from './services/changestatus/changestatus.component';
 import { TaskeditComponent } from './services/taskedit/taskedit.component';
+import { PaginationComponent } from './pagination/pagination.component';
+import { NgxPaginationModule}  from 'ngx-pagination';
+import { TaskhistoryComponent } from './services/taskhistory/taskhistory.component';
+import { EditprofileComponent } from './editprofile/editprofile.component';
+
+
+
+
+
 
 
 @NgModule({
@@ -45,13 +54,18 @@ import { TaskeditComponent } from './services/taskedit/taskedit.component';
     VerticalnavComponent,
     ChangestatusComponent,
     TaskeditComponent,
+    PaginationComponent,
+    TaskhistoryComponent,
+    EditprofileComponent
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

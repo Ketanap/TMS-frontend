@@ -8,43 +8,51 @@
     </div>
     <form (ngSubmit)="OnSubmit()" #addForm="ngForm">
         <div class="mb-3">
+            <label for="taskdate" class="label">Task Date</label>
             <input type="string" class="form-control" id="taskdate" placeholder="Task Date" name="TaskDate"
                 [(ngModel)]="TaskDate">
         </div>
         <div class="mb-3">
-            <input type="integer" class="form-control" id="userid" placeholder="User Id" name="UserId"
-                [(ngModel)]="UserId">
+            <label for="userid" class="label">User</label>
+            <select class="form-select" id="userid" name="UserId" [(ngModel)]="UserId">
+                <option *ngFor="let user of User" [value]="user.userid">{{ user.username }}</option>
+            </select>
         </div>
         <div class="mb-3">
-            <label for="projectid">Project Id</label>
+            <label for="projectid" class="label">Project</label>
             <select class="form-select" id="projectid" name="ProjectId" [(ngModel)]="ProjectId">
                 <option *ngFor="let project of Project" [value]="project.projectid">{{ project.projectname }}</option>
             </select>
         </div>
         <div class="mb-3">
-            <label for="statusid">Status Id</label>
+            <label for="statusid" class="label">Status</label>
             <select class="form-select" id="statusid" name="StatusId" [(ngModel)]="StatusId">
                 <option *ngFor="let status of Status" [value]="status.statusid">{{ status.statusname }}</option>
             </select>
         </div>
 
         <div class="mb-3">
+            <label for="description" class="label">Description</label>
             <input type="integer" class="form-control" id="description" placeholder="Description" name="Description"
                 [(ngModel)]="Description">
         </div>
         <div class="mb-3">
+            <label for="expectedtime" class="label">Expected Time(Hours)</label>
             <input type="integer" class="form-control" id="expectedtime" placeholder="Expected Time" name="ExpectedTime"
                 [(ngModel)]="ExpectedTime">
         </div>
         <div class="mb-3">
+            <label for="actualtime" class="label">Actual Time(Hours)</label>
             <input type="integer" class="form-control" id="actualtime" placeholder="Actual Time" name="ActualTime"
                 [(ngModel)]="ActualTime">
         </div>
         <div class="mb-3">
+            <label for="duedate" class="label">Due Date</label>
             <input type="string" class="form-control" id="duedate" placeholder="Due Date" name="DueDate"
                 [(ngModel)]="DueDate">
         </div>
         <div class="mb-3">
+            <label for="completeddate" class="label">Completed Date</label>
             <input type="string" class="form-control" id="completeddate" placeholder="Completed Date"
                 name="CompletedDate" [(ngModel)]="CompletedDate">
         </div>

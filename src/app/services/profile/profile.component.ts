@@ -9,12 +9,13 @@ import { Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class ProfileComponent implements OnInit {
   profiles: any =[];
    @Output() editEvent = new EventEmitter<any>();
-  Email: any;
-  Phone: any;
-  username: any;
-  user:any;
-  Contact: any;
-  
+   email: any;
+   username: any;
+   user: any;
+   contact: any;
+   userId: any;
+   
+ 
 
   constructor(private http: HttpClient) {
     this.user=JSON.parse(localStorage.getItem("user")||"{}");
@@ -25,15 +26,23 @@ export class ProfileComponent implements OnInit {
     });
 
     const requestOptions = { headers: headers };
-    this.http.get('http://localhost:9090/user', requestOptions).subscribe(data => this.showData(data));
+    this.userId = this.user.id; // Set the userId to the current user's id
+    const url = 'http://localhost:9090/user/${this.userId}'; // Use this.userId instead of userId
+    this.http.get(url, requestOptions).subscribe(data => this.showData(data));
+    console.log(this.user);
   }
   ngOnInit(): void {}
   
-  showData(data:any) {
+  showData(data: any) {
+    if (this.user && this.user.user) {
+      this.username = this.user.user.username;
+      this.email = this.user.user.email;
+      this.contact = this.user.user.contact;
+      
+    } else {
+      console.error('User data is not available');
+    }
 
-    console.log(data);
-      this.user=data;
-      this.user.name = data.user.user.username;
+  }  
 
-  }
 }

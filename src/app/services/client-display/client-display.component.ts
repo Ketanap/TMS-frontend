@@ -9,6 +9,7 @@ import { Component, EventEmitter, Output} from '@angular/core';
 })
 export class ClientDisplayComponent {
   clients: any = [];
+  p: number = 1; 
 
   @Output() editEvent = new EventEmitter<any>();
   ClientName: any;

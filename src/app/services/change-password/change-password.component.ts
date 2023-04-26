@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-change-password',
@@ -15,24 +15,36 @@ export class ChangePasswordComponent {
   constructor(private http: HttpClient) {}
 
   onSubmit() {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const token = user.token;
+    if (!token) {
+      this.errorMessage = 'You must be logged in to change your password.';
+      return;
+    }
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
     const payload = {
       email: this.Email,
       oldpassword: this.OldPassword,
       newpassword: this.NewPassword,
     };
-    this.http.post('http://localhost:9090/user/changepassword', payload)
-.subscribe(
-      response => {
-        console.log(response);
-        // show success message to user
-      },
-      error => {
-         //console.error(error);
-      //this.errorMessage = error.message;
-      //   // show error message to user
-       }
-    );
+    const requestOptions = { headers: headers };
+    this.http.post('http://localhost:9090/user/changepassword', payload, requestOptions)
+      .subscribe(
+        response => {
+          console.log(response);
+          // show success message to user
+        },
+        error => {
+          console.error(error);
+          this.errorMessage = error.message;
+          // show error message to user
+        }
+      );
   }
+  
   // clear() {
   //   this.Email = " ";
   //   this.OldPassword = " ";

@@ -8,12 +8,13 @@
     </div>
     <form (ngSubmit)="OnSubmit()" #addForm="ngForm">
         <div class="mb-3">
-            <input type="text" class="form-control" id="projectname" placeholder="Project Name" name="ProjectName"
+            <label for="projectname" class="label">Project Name</label>
+            <input type="text" class="form-control" id="projectname" name="ProjectName"
                 [(ngModel)]="ProjectName">
         </div>
         <div class="mb-3">
-            <label for="projectid">Client Id</label>
-            <select class="form-select" id="clientid" name="ClientId" placeholder="ClientId" [(ngModel)]="ClientId">
+            <label for="projectid" class="label">Client Id</label>
+            <select class="form-select" id="clientid" name="ClientId" [(ngModel)]="ClientId">
                 <option *ngFor="let client of Client" [value]="client.clientid">{{ client.clientname }}</option>
             </select>
         </div>

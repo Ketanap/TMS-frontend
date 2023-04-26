@@ -10,7 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TaskeditComponent implements OnInit{
   @Input()
   Taskid = "";
-  TaskDate = new Date().toLocaleDateString('en-GB');;
+  TaskDate = new Date().toLocaleDateString('en-GB');user: any;
+  User: any;
+;
   UserId = "";
   ProjectId = "";
   StatusId = "";
@@ -25,7 +27,8 @@ export class TaskeditComponent implements OnInit{
 
 
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { 
+    this.user = JSON.parse(localStorage.getItem("user") || "{}");
   }
 
   ngOnInit(): void {
@@ -50,6 +53,9 @@ export class TaskeditComponent implements OnInit{
       this.http
         .get("http://localhost:9090/project/", requestOptions)
         .subscribe((data) => this.showProject(data));
+      this.http
+        .get("http://localhost:9090/user/", requestOptions)
+        .subscribe((data) => this.showUser(data));
     });
   }
   showStatus(data: any) {
@@ -57,6 +63,9 @@ export class TaskeditComponent implements OnInit{
   }
   showProject(data: any) {
     this.Project = data;
+  }
+  showUser(data:any) {
+    this.User = data;
   }
   showData(data: any) {
     console.log(data);

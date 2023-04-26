@@ -12,8 +12,10 @@
                 [(ngModel)]="TaskDate">
         </div>
         <div class="mb-3">
-            <input type="integer" class="form-control" id="userid" placeholder="User Id" name="UserId"
-                [(ngModel)]="UserId" readonly>
+            <label for="userid">User Id</label>
+            <select class="form-select" id="userid" name="UserId" [(ngModel)]="UserId" disabled>
+                <option *ngFor="let user of User" [value]="user.userid">{{ user.username }}</option>
+            </select>
         </div>
         <div class="mb-3">
             <label for="projectid">Project Id</label>

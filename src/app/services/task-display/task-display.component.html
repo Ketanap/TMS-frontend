@@ -1,12 +1,12 @@
-<link rel="stylesheet" href="task-display.component.css">
-
 <div class="container" style="width:100vw">
     <div>
         <h3>Task</h3>
     </div>
     <br>
     <a href="taskadd" class="btn">Add</a>
-    <br>
+    <div class="d-flex justify-content-center">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
     <br>
     <table class="table table-striped ">
         <thead class="thead-inverse">
@@ -29,7 +29,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let task of tasks ">
+            <tr *ngFor="let task of tasks | paginate: { itemsPerPage: 10, currentPage: p }">
                 <td> {{ task.taskdate}} </td>
                 <td> {{ task.tblUser.username }} </td>
                 <td> {{ task.tblProject.projectname }} </td>

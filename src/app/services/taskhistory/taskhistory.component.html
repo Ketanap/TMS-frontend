@@ -1,11 +1,7 @@
-<link rel="stylesheet" href="taskhistory.component.css">
-
-
 <div class="container" style="width:100vw">
     <div>
         <h3>Task History</h3>
     </div>
-    <br>
     <br>
     <table class="table table-striped ">
         <thead class="thead-inverse">
@@ -18,11 +14,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let history of histories ">
-                <td> {{ history.tbltask.taskdate }} </td>
-                <td> {{ history.changedate }} </td>
+            <tr *ngFor="let history of histories">
+                <td> {{ history.task }} </td>
+                <td> {{ history.taskdate }} </td>
+                <td> {{ history.oldstatusid }} </td>
                 <td> {{ history.statusid }} </td>
-                <td> {{ history.completeddate }} </td>
                 <td><button type="button" class="btn btn-primary" routerLink="..//localhost:9090/user">Edit</button>
                 </td>
                 <td><button type="button" class="btn btn-danger">Delete</button></td>
