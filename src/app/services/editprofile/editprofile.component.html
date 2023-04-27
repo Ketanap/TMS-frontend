@@ -1,0 +1,27 @@
+<div class="container">
+    <h1 class="profile">User Profile</h1>
+    <div class="profile-icon">
+      <span class="bi bi-person-circle" style="font-size: 200px; color: rgb(84, 84, 84);"></span>
+    </div>
+    <div class="profile-details">
+      
+      <div class="profile-about">
+        <h1>About Me</h1>
+        <form (ngSubmit)="OnSubmit()" #addForm="ngForm" class="form">
+            <div class="mb-3">     
+                <label for="username" class="label">User Name</label>
+                <input type="text" class="form-control" id="username"  name="UserName" [(ngModel)]="UserName">
+            </div>   
+            <div class="mb-3">
+                <label for="email" class="label">Email</label>
+                <input type="email" class="form-control" id="email" name="Email" [(ngModel)]="Email">   
+            </div>
+            <div class="mb-3">   
+                <label for="contact" class="label">Contact</label>     
+                <input type="Phone-No" class="form-control" id="contact" name="Contact" [(ngModel)]="Contact">
+            </div>
+           <input type="submit" class="btn" value="Save">
+           <br>
+           <br>
+        </form>
+</div>

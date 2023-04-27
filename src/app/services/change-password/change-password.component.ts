@@ -35,19 +35,17 @@ export class ChangePasswordComponent {
       .subscribe(
         response => {
           console.log(response);
-          // show success message to user
+          alert("password successfully changed!")
+          this.Email = '';
+          this.OldPassword = '';
+          this.NewPassword = '';
         },
         error => {
           console.error(error);
           this.errorMessage = error.message;
+          alert("Invalid Information")
           // show error message to user
         }
       );
   }
-  
-  // clear() {
-  //   this.Email = " ";
-  //   this.OldPassword = " ";
-  //   this.NewPassword = " ";
-  // }
 }

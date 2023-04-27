@@ -25,7 +25,7 @@ import { TaskeditComponent } from './services/taskedit/taskedit.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { NgxPaginationModule}  from 'ngx-pagination';
 import { TaskhistoryComponent } from './services/taskhistory/taskhistory.component';
-import { EditprofileComponent } from './editprofile/editprofile.component';
+import { EditprofileComponent } from './services/editprofile/editprofile.component';
 
 
 
@@ -56,7 +56,8 @@ import { EditprofileComponent } from './editprofile/editprofile.component';
     TaskeditComponent,
     PaginationComponent,
     TaskhistoryComponent,
-    EditprofileComponent
+    EditprofileComponent,
+    
     
   ],
   imports: [

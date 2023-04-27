@@ -1,19 +1,21 @@
 <div class="container">
-  <div class="card-body">
-    <h1 class="mb-4">User Profile</h1>
+    <h1 class="profile">User Profile</h1>
     <div class="profile-icon">
-      <span class="bi bi-person-circle" style="font-size: 250px; color: rgb(84, 84, 84);"></span>
+      <span class="bi bi-person-circle" style="font-size: 200px; color: rgb(84, 84, 84);"></span>
     </div>
     <div class="profile-details">
       <p class="user">{{username}}</p>
-
-      <div class="profile-about"><br>
-        <h1 class="mb-4">About Me</h1>
+      <div class="profile-about">
+        <h5>About Me</h5>
         <div *ngIf="user !== null">
-          <p>Email: {{email}}</p>
+          <p style="font-size: 17px;">Email: {{email}}</p>
         </div>
-        <p>Phone: {{contact}}</p>
+        <p style="font-size: 17px;">Phone: {{contact}}</p>
       </div>
     </div>
-  </div>
+    <br>
+    <br>
+    <button type="button" class="btn" routerLink="../editprofile" [queryParams]="{id: this.user.user.userid}" >Edit</button>
+    <br>
+    <br>
 </div>

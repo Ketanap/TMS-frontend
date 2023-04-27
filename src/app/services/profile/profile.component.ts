@@ -8,12 +8,14 @@ import { Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
   profiles: any =[];
+  users:any =[];
    @Output() editEvent = new EventEmitter<any>();
    email: any;
    username: any;
    user: any;
    contact: any;
    userId: any;
+  
    
  
 
@@ -26,8 +28,7 @@ export class ProfileComponent implements OnInit {
     });
 
     const requestOptions = { headers: headers };
-    this.userId = this.user.id; // Set the userId to the current user's id
-    const url = 'http://localhost:9090/user/${this.userId}'; // Use this.userId instead of userId
+    const url = 'http://localhost:9090/user'; // Use this.userId instead of userId
     this.http.get(url, requestOptions).subscribe(data => this.showData(data));
     console.log(this.user);
   }
@@ -43,6 +44,10 @@ export class ProfileComponent implements OnInit {
       console.error('User data is not available');
     }
 
-  }  
+  } 
+  editClick(id: number) {
+    
+    this.editEvent.emit(id);
+  } 
 
 }
