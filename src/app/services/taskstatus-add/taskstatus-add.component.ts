@@ -8,11 +8,10 @@ import { ActivatedRoute,Router } from '@angular/router';
   styleUrls: ['./taskstatus-add.component.css']
 })
 export class TaskstatusAddComponent implements OnInit {
-  @Input()
+
   StatusName = "";
   Type = "";
   Statusid= "";
-  data ={};
   
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
@@ -41,6 +40,10 @@ export class TaskstatusAddComponent implements OnInit {
     }
   }
   OnSubmit() {
+    if(!this.StatusName || !this.Type) {
+      alert("ALl fields are required");
+      return;
+    }
     var user=JSON.parse(localStorage.getItem("user")||"{}");
     let api_key=user.token;
     const headers = new HttpHeaders({

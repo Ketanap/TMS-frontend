@@ -59,6 +59,7 @@ export class TaskAddComponent implements OnInit {
     this.Project = data;
   }
   OnSubmit() {
+    
     this.UserId=this.user.user.userid;
     this.StatusId="1";
     var user = JSON.parse(localStorage.getItem("user") || "{}");

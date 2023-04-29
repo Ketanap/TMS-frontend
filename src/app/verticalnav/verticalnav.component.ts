@@ -7,13 +7,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./verticalnav.component.css']
 })
 export class VerticalnavComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
 
-  
-  onLogout(){
-    localStorage.removeItem('user');
-    this.router.navigate(['/signin']);
-   }
+
+  onLogout() {
+    const currentUrl = this.router.url;
+    if (confirm('Are you sure you want to log out?')) {
+      localStorage.removeItem('user');
+      this.router.navigate(['/signin']);
+    } else {
+      this.router.navigateByUrl(currentUrl);
+    }
+  }
+
 
 }

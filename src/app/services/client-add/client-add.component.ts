@@ -8,12 +8,11 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./client-add.component.css']
 })
 export class ClientAddComponent implements OnInit {
-  @Input()
+ 
   Clientid = "";
   ClientName = "";
   Email = "";
   Contact = "";
-  data = {};
   user: any;
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
@@ -44,6 +43,10 @@ export class ClientAddComponent implements OnInit {
     }
   }
   OnSubmit() {
+    if(!this.ClientName || !this.Email || !this.Contact){
+      alert("All fields are required");
+      return;
+    } 
     this.user = JSON.parse(localStorage.getItem("user") || "{}");
     let api_key = this.user.token;
     const headers = new HttpHeaders({

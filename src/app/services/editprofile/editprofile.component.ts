@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+declare var localStorage: any;
 
 @Component({
   selector: 'app-editprofile',
@@ -9,7 +10,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./editprofile.component.css']
 })
 export class EditprofileComponent {
-  @Input()
   email: any;
   username: any;
   user: any;
@@ -20,8 +20,9 @@ export class EditprofileComponent {
   Userid: any;
   userid: any;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.user = JSON.parse(localStorage.getItem("user") || "{}");
+  constructor(
+    private http: HttpClient, private route: ActivatedRoute, private router: Router) {
+    this.user = JSON.parse(localStorage.getItem('user') || '{}');
     this.UserName = this.user.user.username;
     this.Email = this.user.user.email;
     this.Contact = this.user.user.contact;
@@ -29,19 +30,22 @@ export class EditprofileComponent {
   }
 
 
+
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      console.log(params); // { orderby: "price" }
+    this.route.queryParams.subscribe((params) => {
+      console.log(params);
       this.Userid = params['id'];
-      var user = JSON.parse(localStorage.getItem("user") || "{}");
-      let api_key = user.token;
+      const user = JSON.parse(localStorage.getItem('user') || '{}');
+      const api_key = user.token;
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${api_key}`
       });
 
       const requestOptions = { headers: headers };
-      this.http.get('http://localhost:9090/user/' + this.Userid, requestOptions).subscribe(data => this.showData(data));
+      this.http
+        .get('http://localhost:9090/user/' + this.Userid, requestOptions)
+        .subscribe((data) => this.showData(data));
     });
   }
 
@@ -51,36 +55,34 @@ export class EditprofileComponent {
     this.username = data.username;
     this.email = data.email;
     this.contact = data.contact;
-
-
-
   }
+
   OnSubmit() {
-    var user = JSON.parse(localStorage.getItem("user") || "{}");
-    let api_key = user.token;
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const api_key = user.token;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${api_key}`
     });
     const requestOptions = { headers: headers };
     const updatedData = {
-      username: this.username,
-      email: this.email,
-      contact: this.contact
+      username: this.UserName,
+      email: this.Email,
+      contact: this.Contact
     };
     console.log(headers);
-    this.http.put('http://localhost:9090/user/' + this.userid,
-      { username: this.UserName, email: this.Email, contact: this.Contact }, requestOptions)
+    this.http
+      .put('http://localhost:9090/user/' + this.userid, updatedData, requestOptions)
       .subscribe(
-        data => {
+        (data) => {
           console.log(data);
-          user.user.username = this.username;
-          user.user.email = this.email;
-          user.user.contact = this.contact;
+          user.user.username = this.UserName;
+          user.user.email = this.Email;
+          user.user.contact = this.Contact;
           localStorage.setItem('user', JSON.stringify(user));
           this.router.navigate(['../profile']);
         },
-        error => {
+        (error) => {
           console.log(error);
         }
       );
