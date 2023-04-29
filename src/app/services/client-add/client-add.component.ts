@@ -16,7 +16,7 @@ export class ClientAddComponent implements OnInit {
   data = {};
   user: any;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { 
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.user = JSON.parse(localStorage.getItem("user") || "{}");
   }
 
@@ -37,11 +37,11 @@ export class ClientAddComponent implements OnInit {
   }
 
   showData(data: any) {
-    if(data){
-    this.ClientName = data.clientname;
-    this.Contact = data.contact;
-    this.Email = data.email;
-  }
+    if (data) {
+      this.ClientName = data.clientname;
+      this.Contact = data.contact;
+      this.Email = data.email;
+    }
   }
   OnSubmit() {
     this.user = JSON.parse(localStorage.getItem("user") || "{}");
@@ -58,7 +58,7 @@ export class ClientAddComponent implements OnInit {
       this.http.put('http://localhost:9090/client/' + this.Clientid,
         { clientname: this.ClientName, email: this.Email, contact: this.Contact, roleid: 2 }, requestOptions)
         .subscribe(
-          data => { 
+          data => {
             console.log(data);
             this.router.navigate(['../client']);
           },
@@ -72,12 +72,12 @@ export class ClientAddComponent implements OnInit {
         .subscribe(
           data => {
             console.log(data);
-            this.router.navigate(['../client']); 
+            this.router.navigate(['../client']);
           },
           error => {
             console.log(error);
           }
         );
+    }
   }
-}
 }

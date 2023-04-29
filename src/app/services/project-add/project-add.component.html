@@ -13,7 +13,7 @@
                 [(ngModel)]="ProjectName">
         </div>
         <div class="mb-3">
-            <label for="projectid" class="label">Client Id</label>
+            <label for="projectid" class="label">Client</label>
             <select class="form-select" id="clientid" name="ClientId" [(ngModel)]="ClientId">
                 <option *ngFor="let client of Client" [value]="client.clientid">{{ client.clientname }}</option>
             </select>

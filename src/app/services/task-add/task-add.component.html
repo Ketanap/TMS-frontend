@@ -8,7 +8,8 @@
     </div>
     <form (ngSubmit)="OnSubmit()" #addForm="ngForm">
         <div class="mb-3">
-            <input type="string" class="form-control" id="taskdate" placeholder="Task Date" name="TaskDate"
+            <label for="taskdate" class="label">Task Date</label>
+            <input type="string" class="form-control" id="taskdate"  name="TaskDate"
                 [(ngModel)]="TaskDate">
         </div>
         <!-- <div class="mb-3">
@@ -16,7 +17,7 @@
                 [(ngModel)]="UserId">
         </div> -->
         <div class="mb-3">
-            <label for="projectid">Project </label>
+            <label for="projectid" class="label">Project </label>
             <select class="form-select" id="projectid" name="ProjectId" [(ngModel)]="ProjectId">
                 <option *ngFor="let project of Project" [value]="project.projectid">{{ project.projectname }}</option>
             </select>
@@ -29,19 +30,23 @@
         </div> -->
 
         <div class="mb-3">
-            <input type="integer" class="form-control" id="description" placeholder="Description" name="Description"
+            <label for="description" class="label">Description</label>
+            <input type="integer" class="form-control" id="description" name="Description"
                 [(ngModel)]="Description">
         </div>
         <div class="mb-3">
-            <input type="integer" class="form-control" id="expectedtime" placeholder="Expected Time" name="ExpectedTime"
+            <label for="exceptedtime" class="label">Expected Time</label>
+            <input type="integer" class="form-control" id="expectedtime" name="ExpectedTime"
                 [(ngModel)]="ExpectedTime">
         </div>
         <div class="mb-3">
-            <input type="integer" class="form-control" id="actualtime" placeholder="Actual Time" name="ActualTime"
+            <label for="actualtime" class="label">Actual Time</label>
+            <input type="integer" class="form-control" id="actualtime" name="ActualTime"
                 [(ngModel)]="ActualTime">
         </div>
         <div class="mb-3">
-            <input type="string" class="form-control" id="duedate" placeholder="Due Date" name="DueDate"
+            <label for="duedate" class="label">Due Date</label>
+            <input type="string" class="form-control" id="duedate" name="DueDate"
                 [(ngModel)]="DueDate">
         </div>
         <!-- <div class="mb-3">

@@ -11,8 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ChangestatusComponent implements OnInit {
   @Input()
   Taskid = "";
-  TaskDate = new Date().toLocaleDateString('en-GB');editEvent: any;
-;
+  TaskDate = new Date().toLocaleDateString('en-GB'); editEvent: any;
+  ;
   UserId = "";
   ProjectId = "";
   StatusId = "";
@@ -23,9 +23,9 @@ export class ChangestatusComponent implements OnInit {
   CompletedDate = "";
   Status: any = [];
   Project: any = [];
-  OldStatusId:any="";
+  OldStatusId: any = "";
   data = {};
-  User:any =[];
+  User: any = [];
 
 
 
@@ -34,30 +34,30 @@ export class ChangestatusComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams
-    .subscribe((params) => {
-      this.Taskid = params['id'];
-      var user = JSON.parse(localStorage.getItem("user") || "{}");
-      this.UserId = user.user.userid;
-      let api_key = user.token;
-      const headers = new HttpHeaders({
-        "Content-Type": "application/json",
-        'Authorization': `Bearer ${api_key}`
-      });
+      .subscribe((params) => {
+        this.Taskid = params['id'];
+        var user = JSON.parse(localStorage.getItem("user") || "{}");
+        this.UserId = user.user.userid;
+        let api_key = user.token;
+        const headers = new HttpHeaders({
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${api_key}`
+        });
 
-      const requestOptions = { headers: headers };
-      this.http
-        .get("http://localhost:9090/task/" + this.Taskid, requestOptions)
-        .subscribe((data) => this.showData(data));
-      this.http
-        .get("http://localhost:9090/taskstatus/", requestOptions)
-        .subscribe((data) => this.showStatus(data));
-      this.http
-        .get("http://localhost:9090/project/", requestOptions)
-        .subscribe((data) => this.showProject(data));
+        const requestOptions = { headers: headers };
         this.http
-        .get("http://localhost:9090/user/", requestOptions)
-        .subscribe((data) => this.showUser(data));
-    });
+          .get("http://localhost:9090/task/" + this.Taskid, requestOptions)
+          .subscribe((data) => this.showData(data));
+        this.http
+          .get("http://localhost:9090/taskstatus/", requestOptions)
+          .subscribe((data) => this.showStatus(data));
+        this.http
+          .get("http://localhost:9090/project/", requestOptions)
+          .subscribe((data) => this.showProject(data));
+        this.http
+          .get("http://localhost:9090/user/", requestOptions)
+          .subscribe((data) => this.showUser(data));
+      });
   }
   showStatus(data: any) {
     this.Status = data;
@@ -65,30 +65,30 @@ export class ChangestatusComponent implements OnInit {
   showProject(data: any) {
     this.Project = data;
   }
-  showUser(data:any) {
+  showUser(data: any) {
     this.User = data;
   }
   showData(data: any) {
-    if(data){
-    console.log(data);
-    this.TaskDate = data.taskdate;
-    this.UserId = data.userid;
-    this.ProjectId = data.projectid;
-    this.StatusId = data.statusid;
-    this.OldStatusId=data.statusid;
-    this.Description = data.description;
-    this.ExpectedTime = data.expectedtime;
-    this.ActualTime = data.actualtime;
-    this.DueDate = data.duedate;
-    this.CompletedDate = data.completeddate;
+    if (data) {
+      console.log(data);
+      this.TaskDate = data.taskdate;
+      this.UserId = data.userid;
+      this.ProjectId = data.projectid;
+      this.StatusId = data.statusid;
+      this.OldStatusId = data.statusid;
+      this.Description = data.description;
+      this.ExpectedTime = data.expectedtime;
+      this.ActualTime = data.actualtime;
+      this.DueDate = data.duedate;
+      this.CompletedDate = data.completeddate;
     }
 
   }
 
   editClick(id: number) {
-  
-      this.editEvent.emit(id);
-    }
+
+    this.editEvent.emit(id);
+  }
 
 
   OnSubmit() {
@@ -112,7 +112,7 @@ export class ChangestatusComponent implements OnInit {
             console.log(error);
           }
         );
-        this.http.post('http://localhost:9090/taskhistory/',
+      this.http.post('http://localhost:9090/taskhistory/',
         { changedate: this.TaskDate, taskid: this.Taskid, fromstatusid: this.OldStatusId, tostatusid: this.StatusId }, requestOptions)
         .subscribe(
           data => {
@@ -122,11 +122,7 @@ export class ChangestatusComponent implements OnInit {
           error => {
             console.log(error);
           }
-        );  
-    } 
+        );
+    }
   }
-
-
-
-
 }
