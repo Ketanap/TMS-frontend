@@ -60,6 +60,6 @@ export class ClientDisplayComponent {
     }else{
       alert("Permission not Granted")
     }
+    
   }
-
 }

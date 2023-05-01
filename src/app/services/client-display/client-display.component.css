@@ -9,10 +9,13 @@
     color: #d5dddf;
 }
 .container{
-    margin-left: 50px;
+    margin-left: 50px; 
 }
 .btn:hover{
     background-color: #95bccc;
     color: black;
+}
+.search{
+    margin-left: 80%;
 }
 

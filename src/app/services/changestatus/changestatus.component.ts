@@ -99,6 +99,14 @@ export class ChangestatusComponent implements OnInit {
       'Authorization': `Bearer ${api_key}`
     });
     const requestOptions = { headers: headers };
+    
+    // Check if the token is valid
+    if (!api_key) {
+      console.error("Invalid token!");
+      // Log the user out or redirect them to the login page
+      return;
+    }
+    
     console.log(headers);
     if (this.Taskid) {
       this.http.put('http://localhost:9090/task/' + this.Taskid,
@@ -125,4 +133,5 @@ export class ChangestatusComponent implements OnInit {
         );
     }
   }
+  
 }
