@@ -12,7 +12,6 @@ export class ChangestatusComponent implements OnInit {
   @Input()
   Taskid = "";
   TaskDate = new Date().toLocaleDateString('en-GB'); editEvent: any;
-  ;
   UserId = "";
   ProjectId = "";
   StatusId = "";
