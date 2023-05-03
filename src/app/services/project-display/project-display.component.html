@@ -1,18 +1,21 @@
-<link rel="stylesheet" href="project-display.component.css">
-
-
-<div class="container">
+<div class="container" style="width:100vw">
     <div>
-        <h3>Project</h3>
+      <h3>Project</h3>
     </div>
     <br>
-    <div>
-    <a href="projectadd" *ngIf="user.user.roleid == 1 " class="btn">Add</a>
+    <div class="d-flex justify-content-between">
+      <div>
+        <div class="col-4 text-right">
+          <a href="projectadd" *ngIf="user.user.roleid == 1 " class="btn">Add</a>
+        </div>
+      </div>
+      <div>
+        <input type="text" id="search-input" placeholder="Search" [(ngModel)]="searchText" style="height: 35px;">
+        <span class="input-group-btn">
+          <button class="btn " type="button" (click)="searchData()">Search</button>
+        </span>
+      </div>
     </div>
-     <div class="d-flex justify-content-center">
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
-     </div>
-    <br>
     <br>
     <table class="table table-striped ">
         <thead class="thead-inverse">
@@ -25,7 +28,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let project of projects | paginate: { itemsPerPage: 10, currentPage: p } ">
+            <tr *ngFor="let project of filteredprojects | paginate: { itemsPerPage: 9, currentPage: p } ">
                 <td> {{ project.projectname }} </td>
                 <td> {{ project.tblClient.clientname }} </td>
                 <td><button type="button" id="boot-icon" *ngIf="user.user.roleid == 1 " class="bi bi-pencil-square" style="font-size: 25px; border: 0px ; color: rgb(38, 101, 227); background: none;" routerLink="../projectadd" [queryParams]="{id: project.projectid}"></button></td>
@@ -33,3 +36,10 @@
             </tr>
         </tbody>
     </table>
+    <br>
+    <br>
+    <br>
+    <div class="d-flex justify-content-center">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+     </div>
+</div>

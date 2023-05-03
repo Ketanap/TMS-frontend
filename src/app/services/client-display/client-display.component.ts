@@ -1,6 +1,5 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Output} from '@angular/core';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-client-display',
@@ -10,6 +9,8 @@ import { Component, EventEmitter, Output} from '@angular/core';
 export class ClientDisplayComponent {
   clients: any = [];
   p: number = 1; 
+  filteredClients: any = [];
+  searchText: string = '';
 
   @Output() editEvent = new EventEmitter<any>();
   ClientName: any;
@@ -32,22 +33,29 @@ export class ClientDisplayComponent {
   }
 
   ngOnInit(): void {
+    const searchInput = document.getElementById('search-input');
+  if (searchInput) {
+    searchInput.addEventListener('keyup', (event: KeyboardEvent) => {
+      if (event.key === 'Enter') {
+        this.searchData();
+      }
+    });
+  }
   }
 
   showData(data: any) {
     console.log(data);
     this.clients = data;
+    this.filteredClients = this.clients;
   }
 
   editClick(id: number) {
-    
     if (this.user.user.roleid == 1 ) { 
       this.editEvent.emit(id);
     }
   }
 
   removeClick(clientid: string) {
-
     if (this.user.user.roleid == 1 ) {
       let api_key = this.user.token;
       const headers = new HttpHeaders({
@@ -57,9 +65,20 @@ export class ClientDisplayComponent {
       const requestOptions = { headers: headers };
       console.log(clientid);
       this.http.delete('http://localhost:9090/client/'+clientid,requestOptions ).subscribe(data=>{location.reload() ; });
-    }else{
+    } else {
       alert("Permission not Granted")
     }
-    
+  }
+
+  searchData() {
+    if (this.searchText !== '') {
+      this.filteredClients = this.clients.filter((client: any) => {
+        return client.clientname.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        client.email.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        client.contact.toLowerCase().includes(this.searchText.toLowerCase());
+      });
+    } else {
+      this.filteredClients = this.clients;
+    }
   }
 }

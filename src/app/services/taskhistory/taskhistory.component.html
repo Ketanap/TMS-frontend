@@ -3,9 +3,6 @@
         <h3>Task History</h3>
     </div>
     <br>
-    <div class="d-flex justify-content-center">
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    </div>
         <br>
     <table class="table table-striped ">
         <thead class="thead-inverse">
@@ -18,7 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let history of histories | paginate: { itemsPerPage: 10, currentPage: p }">
+            <tr *ngFor="let history of histories | paginate: { itemsPerPage: 9, currentPage: p }">
                 <td> {{ history.tbltask.taskname}} </td>
                 <td> {{ history.tbltask.taskdate }} </td>
                 <td> {{ history.tbltask.oldstatusid }} </td>
@@ -30,3 +27,9 @@
             </tr>
         </tbody>
     </table>
+    <br>
+    <br>
+    <br>
+    <div class="d-flex justify-content-center">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>

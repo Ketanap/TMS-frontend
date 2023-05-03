@@ -3,13 +3,18 @@
     <h3>Client</h3>
   </div>
   <br>
-  <div class="row">
-    <div class="">
-      <button type="button" class="btn" *ngIf="user.user.roleid == 1 " routerLink="../clientadd">Add</button>
+  <div class="d-flex justify-content-between">
+    <div>
+      <div class="col-4 text-right">
+        <a href="clientadd" *ngIf="user.user.roleid == 1 " class="btn">Add</a>
+      </div>
     </div>
-  </div>
-  <div class="d-flex justify-content-center">
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <div>
+      <input type="text" id="search-input" placeholder="Search" [(ngModel)]="searchText" style="height: 35px;">
+      <span class="input-group-btn">
+        <button class="btn " type="button" (click)="searchData()">Search</button>
+      </span>
+    </div>
   </div>
   <br>
   <table class="table table-striped">
@@ -23,13 +28,23 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let client of clients | paginate: { itemsPerPage: 10, currentPage: p }">
+      <tr *ngFor="let client of filteredClients | paginate: { itemsPerPage: 9, currentPage: p }">
         <td> {{ client.clientname }} </td>
         <td> {{ client.email }} </td>
         <td> {{ client.contact }} </td>
-        <td><button type="button" id="boot-icon" *ngIf="user.user.roleid == 1 " class="bi bi-pencil-square" style="font-size: 25px; border: 0px ; color: rgb(38, 101, 227); background: none;" routerLink="../clientadd" [queryParams]="{id: client.clientid}"></button></td>
-        <td><button type="button" id="boot-icon" *ngIf="user.user.roleid == 1 " class="bi bi-trash" style="font-size: 25px; border: 0px solid; color:rgb(192 60 73); background: none;" (click)='removeClick(client.clientid)'></button></td>
+        <td><button type="button" id="boot-icon" *ngIf="user.user.roleid == 1 " class="bi bi-pencil-square"
+            style="font-size: 25px; border: 0px ; color: rgb(38, 101, 227); background: none;" routerLink="../clientadd"
+            [queryParams]="{id: client.clientid}"></button></td>
+        <td><button type="button" id="boot-icon" *ngIf="user.user.roleid == 1 " class="bi bi-trash"
+            style="font-size: 25px; border: 0px solid; color:rgb(192 60 73); background: none;"
+            (click)='removeClick(client.clientid)'></button></td>
       </tr>
     </tbody>
   </table>
+  <br>
+  <br>
+  <br>
+  <div class="d-flex justify-content-center">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
 </div>

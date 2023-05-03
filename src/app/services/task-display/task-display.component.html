@@ -1,11 +1,20 @@
 <div class="container" style="width:100vw">
     <div>
-        <h3>Task</h3>
+      <h3>Task</h3>
     </div>
     <br>
-    <a href="taskadd" class="btn">Add</a>
-    <div class="d-flex justify-content-center">
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <div class="d-flex justify-content-between">
+      <div>
+        <div class="col-4 text-right">
+          <a href="taskadd" *ngIf="user.user.roleid == 1 " class="btn">Add</a>
+        </div>
+      </div>
+      <div>
+        <input type="text" id="search-input" placeholder="Search" [(ngModel)]="searchText" style="height: 35px;">
+        <span class="input-group-btn">
+          <button class="btn " type="button" (click)="searchData()">Search</button>
+        </span>
+      </div>
     </div>
     <br>
     <table class="table table-striped ">
@@ -28,7 +37,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let task of tasks | paginate: { itemsPerPage: 10, currentPage: p }">
+            <tr *ngFor="let task of filteredTasks | paginate: { itemsPerPage: 9, currentPage: p }">
                 <td> {{ task.taskdate}} </td>
                 <td> {{ task.tblUser.username }} </td>
                 <td> {{ task.tblProject.projectname }} </td>
@@ -46,4 +55,10 @@
             </tr>
         </tbody>
     </table>
+    <br>
+    <br>
+    <br>
+    <div class="d-flex justify-content-center">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
 </div>
