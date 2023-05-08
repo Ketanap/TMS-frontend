@@ -1,35 +1,43 @@
 <div class="container" style="width:80vw">
-    <div>
-        <h3>Task History</h3>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3 class="m-0">Task History</h3>
+      <div class="d-flex align-items-center">
+        <div class="input-group mr-2">
+          <input type="text" id="search-input" placeholder="Search" [(ngModel)]="searchText" style="height: 36px; margin-right: 5px; margin-top: 7px;" class="form-control">
+          <span class="input-group-append">
+            <button class="btn" type="button" style="margin-top: 7px;" (click)="searchData()">Search</button>
+          </span>
+        </div>
+      </div>
     </div>
     <br>
-        <br>
-    <table class="table table-striped ">
-        <thead class="thead-inverse">
-            <tr>
-                <th>Task </th>
-                <th>Change Date</th>
-                <th>FromStatus </th>
-                <th>ToStatus </th>
-               
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let history of histories | paginate: { itemsPerPage: 9, currentPage: p }">
-                <td> {{ history.tbltask.taskname}} </td>
-                <td> {{ history.tbltask.taskdate }} </td>
-                <td> {{ history.tbltask.oldstatusid }} </td>
-                <td> {{ history.tbltask.statusid }} </td>
-                <td><button type="button" class="btn btn-primary" routerLink="..//localhost:9090/user">Edit</button>
-                </td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td>
-
-            </tr>
-        </tbody>
+    <br>
+    <table class="table table-striped">
+      <thead class="thead-inverse">
+        <tr>
+          <th>Task</th>
+          <th>Change Date</th>
+          <th>FromStatus</th>
+          <th>ToStatus</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let history of filteredHistories | paginate: { itemsPerPage: 9, currentPage: p }">
+          <td>{{ history.tbltask.taskname }}</td>
+          <td>{{ history.tbltask.taskdate }}</td>
+          <td>{{ history.tbltask.oldstatusid }}</td>
+          <td>{{ history.tbltask.statusid }}</td>
+          <td><button type="button" class="btn btn-primary" routerLink="../localhost:9090/user">Edit</button></td>
+          <td><button type="button" class="btn btn-danger">Delete</button></td>
+        </tr>
+      </tbody>
     </table>
     <br>
     <br>
-    <br>
     <div class="d-flex justify-content-center">
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
+  </div>
+  

@@ -11,6 +11,8 @@ export class TaskhistoryComponent  {
   histories!: any[];
   user: any;
   p: number = 1; 
+  filteredHistories: any = [];
+  searchText: string = '';
 
   constructor(private http: HttpClient) {
     this.user = JSON.parse(localStorage.getItem("user") || "{}");
@@ -28,7 +30,18 @@ export class TaskhistoryComponent  {
       console.log(data);
       this.histories = data;
     }
-  
+    searchData() {
+      if (this.searchText !== '') {
+        this.filteredHistories = this.histories.filter((taskhistory: any) => {
+          return taskhistory.task.toLowerCase().includes(this.searchText.toLowerCase()) ||
+          taskhistory.changedate.toLowerCase().includes(this.searchText.toLowerCase()) ||
+          taskhistory.fromstatusid.toLowerCase().includes(this.searchText.toLowerCase()) ||
+          taskhistory.tostatusid.toLowerCase().includes(this.searchText.toLowerCase());
+        });
+      } else {
+        this.filteredHistories = this.histories;
+      }
+    }
 
     
 }
