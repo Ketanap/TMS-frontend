@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,9 +7,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./verticalnav.component.css']
 })
 export class VerticalnavComponent {
+  @ViewChild('sidebarTrigger') sidebarTrigger!: ElementRef;
+
   constructor(private router: Router) { }
 
+  ngAfterViewInit() {
+    this.sidebarTriggerEl = this.sidebarTrigger.nativeElement;
+  }
 
+  private sidebarTriggerEl!: HTMLElement;
 
   onLogout() {
     const currentUrl = this.router.url;
@@ -20,6 +26,5 @@ export class VerticalnavComponent {
       this.router.navigateByUrl(currentUrl);
     }
   }
-
 
 }
