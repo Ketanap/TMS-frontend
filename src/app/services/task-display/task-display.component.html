@@ -10,6 +10,9 @@
         </div>
       </div>
       <div>
+        <select name="" id="">
+          <option value="all"></option>
+        </select>
         <input type="text" id="search-input" placeholder="Search" [(ngModel)]="searchText" style="height: 36px; margin-right: 5px;">
         <span class="input-group-btn">
           <button class="btn " type="button" (click)="searchData()">Search</button>
@@ -20,7 +23,7 @@
     <table class="table table-striped ">
         <thead class="thead-inverse">
             <tr>
-                <th>Task Date</th>
+                <th>Task Date </th>
                 <th>User </th>
                 <th>Project </th>
                 <th>Status </th>

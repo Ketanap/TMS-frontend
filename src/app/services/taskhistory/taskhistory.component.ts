@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -7,12 +7,24 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./taskhistory.component.css']
 })
 export class TaskhistoryComponent  {
-  tasks!: any[];
+
+  tasks: any;
   histories!: any[];
-  user: any;
+ 
+  
+  
   p: number = 1; 
-  filteredHistories: any = [];
+  filteredhistories: any = [];
   searchText: string = '';
+
+  @Output()
+ data: any;
+ user: any;
+ taskdate: any;
+ username: any;
+
+ 
+
 
   constructor(private http: HttpClient) {
     this.user = JSON.parse(localStorage.getItem("user") || "{}");
@@ -23,23 +35,25 @@ export class TaskhistoryComponent  {
     });
 
     const requestOptions = { headers: headers };
-    this.http.get('http://localhost:9090/taskhistory', requestOptions).subscribe(data => this.showData(data));
+
+    this.http.get('http://localhost:9090/taskhistory/', requestOptions).subscribe(data => this.showData(data));
   }
 
     showData(data:any) {
       console.log(data);
       this.histories = data;
+      this.filteredhistories = this.histories;
     }
     searchData() {
       if (this.searchText !== '') {
-        this.filteredHistories = this.histories.filter((taskhistory: any) => {
+        this.filteredhistories = this.histories.filter((taskhistory: any) => {
           return taskhistory.task.toLowerCase().includes(this.searchText.toLowerCase()) ||
           taskhistory.changedate.toLowerCase().includes(this.searchText.toLowerCase()) ||
           taskhistory.fromstatusid.toLowerCase().includes(this.searchText.toLowerCase()) ||
           taskhistory.tostatusid.toLowerCase().includes(this.searchText.toLowerCase());
         });
       } else {
-        this.filteredHistories = this.histories;
+        this.filteredhistories = this.histories;
       }
     }
 

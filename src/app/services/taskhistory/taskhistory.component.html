@@ -1,8 +1,8 @@
 <div class="container" style="width:80vw">
-    <div>
+  <div>
       <h3>Task History</h3>
-    </div>
-    <br>
+  </div>
+  <br>
     <div class="d-flex justify-content-between">
       <div>
         
@@ -14,33 +14,29 @@
         </span>
       </div>
     </div>
-    <br>
-    <table class="table table-striped">
+      <br>
+  <table class="table table-striped ">
       <thead class="thead-inverse">
-        <tr>
-          <th>Task</th>
-          <th>Change Date</th>
-          <th>FromStatus</th>
-          <th>ToStatus</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
+          <tr>
+              <th>Task </th>
+              <th>Change Date</th>
+              <th>FromStatus </th>
+              <th>ToStatus </th>
+             
+          </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let history of filteredHistories | paginate: { itemsPerPage: 9, currentPage: p }">
-          <td>{{ history.tbltask.taskname }}</td>
-          <td>{{ history.tbltask.taskdate }}</td>
-          <td>{{ history.tbltask.oldstatusid }}</td>
-          <td>{{ history.tbltask.statusid }}</td>
-          <td><button type="button" class="btn btn-primary" routerLink="../localhost:9090/user">Edit</button></td>
-          <td><button type="button" class="btn btn-danger">Delete</button></td>
-        </tr>
+          <tr *ngFor="let history of filteredhistories | paginate: { itemsPerPage: 9, currentPage: p }">
+              <td> {{ history.taskid}} </td>
+              <td> {{ history.changedate }} </td>
+              <td> {{ history.fromstatusid }} </td>
+              <td> {{ history.tostatusid }} </td>
+          </tr>
       </tbody>
-    </table>
-    <br>
-    <br>
-    <div class="d-flex justify-content-center">
+  </table>
+  <br>
+  <br>
+  <br>
+  <div class="d-flex justify-content-center">
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    </div>
   </div>
-  

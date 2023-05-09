@@ -11,9 +11,7 @@ export class VerticalnavComponent {
 
   constructor(private router: Router) { }
 
-  ngAfterViewInit() {
-    this.sidebarTriggerEl = this.sidebarTrigger.nativeElement;
-  }
+  
 
   private sidebarTriggerEl!: HTMLElement;
 
