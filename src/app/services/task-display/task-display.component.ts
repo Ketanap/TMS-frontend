@@ -52,7 +52,7 @@ export class TaskDisplayComponent {
     console.log(data);
     this.tasks = data;
     this.filteredTasks = data;
-    for (let i = 0; i < this.tasks.length; i++) {
+    for (let i = 0; i < this.tasks.length; i++) { //for completed toggle
       const task = this.tasks[i];
       const taskKey = `task_${task.taskid}_completed`;
       const completedStr = localStorage.getItem(taskKey);

@@ -10,9 +10,6 @@
         </div>
       </div>
       <div>
-        <select name="" id="">
-          <option value="all"></option>
-        </select>
         <input type="text" id="search-input" placeholder="Search" [(ngModel)]="searchText" style="height: 36px; margin-right: 5px;">
         <span class="input-group-btn">
           <button class="btn " type="button" (click)="searchData()">Search</button>
@@ -49,7 +46,7 @@
                 <td> {{ task.expectedtime }} </td>
                 <td> {{ task.actualtime }} </td>
                 <td> {{ task.duedate }} </td>
-                <td> {{ task.completedate }} </td>
+                <td> {{ task.completeddate }} </td>
                 <td><i class="bi" style="font-size: 25px;" 
                     [ngClass]="{'bi-check2-circle text-success': task.completed,'bi-circle text-danger': !task.completed}" (click)="toggleCompleted(task)"> </i></td>
                 <td><i class="bi bi-nintendo-switch" style="font-size:25px; color: black;" routerLink="../changestatus" [queryParams]="{id: task.taskid}"></i></td>

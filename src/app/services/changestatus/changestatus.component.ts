@@ -25,12 +25,13 @@ export class ChangestatusComponent implements OnInit {
   OldStatusId: any = "";
   data = {};
   User: any = [];
-
+  Changedate = new Date().toLocaleDateString('en-GB');
+  
 
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
-
+ 
   ngOnInit(): void {
     this.route.queryParams
       .subscribe((params) => {
@@ -98,7 +99,7 @@ export class ChangestatusComponent implements OnInit {
       'Authorization': `Bearer ${api_key}`
     });
     const requestOptions = { headers: headers };
-    
+
     // Check if the token is valid
     if (!api_key) {
       console.error("Invalid token!");
@@ -106,10 +107,11 @@ export class ChangestatusComponent implements OnInit {
       return;
     }
     
+
     console.log(headers);
     if (this.Taskid) {
       this.http.put('http://localhost:9090/task/' + this.Taskid,
-        { taskdate: this.TaskDate, userid: this.UserId, projectid: this.ProjectId, statusid: this.StatusId, description: this.Description, expectedtime: this.ExpectedTime, actualtime: this.ActualTime, duedate: this.DueDate, completeddate: this.CompletedDate, roleid: 2 }, requestOptions)
+        { taskdate: this.TaskDate, userid: this.UserId, projectid: this.ProjectId, statusid: this.StatusId, description: this.Description, expectedtime: this.ExpectedTime, actualtime: this.ActualTime, duedate: this.DueDate, completeddate: this.Changedate, roleid: 2 }, requestOptions)
         .subscribe(
           data => {
             console.log(data);
@@ -120,7 +122,7 @@ export class ChangestatusComponent implements OnInit {
           }
         );
       this.http.post('http://localhost:9090/taskhistory/',
-        { changedate: this.TaskDate, taskid: this.Taskid, fromstatusid: this.OldStatusId, tostatusid: this.StatusId }, requestOptions)
+        { changedate: this.Changedate, description: this.Description, fromstatusid: this.OldStatusId, tostatusid: this.StatusId }, requestOptions)
         .subscribe(
           data => {
             console.log(data);

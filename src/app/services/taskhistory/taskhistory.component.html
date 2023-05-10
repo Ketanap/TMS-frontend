@@ -27,7 +27,7 @@
       </thead>
       <tbody>
           <tr *ngFor="let history of filteredhistories | paginate: { itemsPerPage: 9, currentPage: p }">
-              <td> {{ history.taskid}} </td>
+              <td> {{ history.description}} </td>
               <td> {{ history.changedate }} </td>
               <td> {{ history.fromstatusid }} </td>
               <td> {{ history.tostatusid }} </td>

@@ -20,7 +20,6 @@ export class TaskeditComponent implements OnInit{
   ExpectedTime = "";
   ActualTime = "";
   DueDate = "";
-  CompletedDate = "";
   Status: any = [];
   Project: any = [];
   data = {};
@@ -77,7 +76,7 @@ export class TaskeditComponent implements OnInit{
     this.ExpectedTime = data.expectedtime;
     this.ActualTime = data.actualtime;
     this.DueDate = data.duedate;
-    this.CompletedDate = data.completeddate;
+ 
 
   }
   OnSubmit() {
@@ -91,7 +90,7 @@ export class TaskeditComponent implements OnInit{
     console.log(headers);
     if (this.Taskid) {
       this.http.put('http://localhost:9090/task/' + this.Taskid,
-        { taskdate: this.TaskDate, userid: this.UserId, projectid: this.ProjectId, statusid: this.StatusId, description: this.Description, expectedtime: this.ExpectedTime, actualtime: this.ActualTime, duedate: this.DueDate, completeddate: this.CompletedDate, roleid: 2 }, requestOptions)
+        { taskdate: this.TaskDate, userid: this.UserId, projectid: this.ProjectId, statusid: this.StatusId, description: this.Description, expectedtime: this.ExpectedTime, actualtime: this.ActualTime, duedate: this.DueDate,  roleid: 2 }, requestOptions)
         .subscribe(
           data => {
             console.log(data);
@@ -106,7 +105,7 @@ export class TaskeditComponent implements OnInit{
         this.StatusId = "Pending";
       }
       this.http.post('http://localhost:9090/task/',
-        { taskdate: this.TaskDate, userid: this.UserId, projectid: this.ProjectId, statusid: this.StatusId, description: this.Description, expectedtime: this.ExpectedTime, actualtime: this.ActualTime, duedate: this.DueDate, completeddate: this.CompletedDate, roleid: 2 }, requestOptions)
+        { taskdate: this.TaskDate, userid: this.UserId, projectid: this.ProjectId, statusid: this.StatusId, description: this.Description, expectedtime: this.ExpectedTime, actualtime: this.ActualTime, duedate: this.DueDate,  roleid: 2 }, requestOptions)
         .subscribe(
           data => {
             console.log(data);
