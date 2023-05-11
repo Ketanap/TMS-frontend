@@ -6,24 +6,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   templateUrl: './taskhistory.component.html',
   styleUrls: ['./taskhistory.component.css']
 })
-export class TaskhistoryComponent  {
-
-  tasks: any;
-  histories!: any[];
- 
-  
-  
-  p: number = 1; 
+export class TaskhistoryComponent {
+  histories: any = [];
+  p: number = 1;
   filteredhistories: any = [];
   searchText: string = '';
 
   @Output()
- data: any;
- user: any;
- taskdate: any;
- username: any;
+  data: any;
+  user: any;
+  changeDate: any;
+  fromstatusid: any;
+  tostatusid: any;
+  description: any;
 
- 
 
 
   constructor(private http: HttpClient) {
@@ -39,24 +35,39 @@ export class TaskhistoryComponent  {
     this.http.get('http://localhost:9090/taskhistory/', requestOptions).subscribe(data => this.showData(data));
   }
 
-    showData(data:any) {
-      console.log(data);
-      this.histories = data;
+  ngOnInit(): void {
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+      searchInput.addEventListener('keyup', (event: KeyboardEvent) => {
+        if (event.key === 'Enter') {
+          this.searchData();
+        }
+      });
+    }
+  }
+  showData(data: any) {
+    console.log(data);
+    this.histories = data;
+    this.filteredhistories = this.histories;
+  }
+  searchData() {
+    if (this.searchText !== '') {
+      this.filteredhistories = this.histories.filter((history: any) => {
+        const Description = history.description ? history.description.toLowerCase() : '';
+        const ChangeDate = history.changedate ? history.changedate.toLowerCase() : '';
+        const FromstatusId = history.fromstatusid && typeof history.fromstatusid === 'string' ? history.fromstatusid.toLowerCase() : '';
+        const TostatusId = history.tostatusid && typeof history.tostatusid === 'string' ? history.tostatusid.toLowerCase() : '';
+
+
+        return Description.includes(this.searchText.toLowerCase()) ||
+          ChangeDate.includes(this.searchText.toLowerCase()) ||
+          FromstatusId.includes(this.searchText.toLocaleLowerCase) ||
+          TostatusId.includes(this.searchText.toLowerCase());
+      });
+    } else {
       this.filteredhistories = this.histories;
     }
-    searchData() {
-      if (this.searchText !== '') {
-        this.filteredhistories = this.histories.filter((taskhistory: any) => {
-          return taskhistory.task.toLowerCase().includes(this.searchText.toLowerCase()) ||
-          taskhistory.changedate.toLowerCase().includes(this.searchText.toLowerCase()) ||
-          taskhistory.fromstatusid.toLowerCase().includes(this.searchText.toLowerCase()) ||
-          taskhistory.tostatusid.toLowerCase().includes(this.searchText.toLowerCase());
-        });
-      } else {
-        this.filteredhistories = this.histories;
-      }
-    }
+  }
 
-    
+
 }
-

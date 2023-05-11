@@ -59,7 +59,7 @@ import { EditprofileComponent } from './services/editprofile/editprofile.compone
     PaginationComponent,
     TaskhistoryComponent,
     EditprofileComponent,
-    
+   
     
   ],
   imports: [
