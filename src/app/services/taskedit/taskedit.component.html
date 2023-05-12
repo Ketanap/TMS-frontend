@@ -26,7 +26,7 @@
         </div>
         <div class="mb-3">
             <label for="statusid" class="label">Status</label>
-            <select class="form-select" id="statusid" name="StatusId" [(ngModel)]="StatusId">
+            <select class="form-select" id="statusid" name="StatusId" [(ngModel)]="StatusId" disabled>
                 <option *ngFor="let status of Status" [value]="status.statusid">{{ status.statusname }}</option>
             </select>
         </div>

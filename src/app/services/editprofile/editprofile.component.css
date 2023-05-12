@@ -4,7 +4,7 @@
   align-items: center;
   background-color: #f5f5f5;
   box-shadow: 20px 20px 50px grey;
-  margin-left: 450px;
+  margin-left: 350px;
 }
 .profile-details {
   display: flex;
@@ -22,7 +22,8 @@ p{
 }
 .user{
   font-weight: bold;
-  font-size: 25px;
+  font-size: 35px;
+  border-bottom: 3px solid rgb(0, 0, 0) ;
 }
 .profile{
   margin-top: 30px;
@@ -35,7 +36,4 @@ p{
 .btn:hover{
 background-color: #95bccc;
 color: black;
-}
-.label{
-  color: grey;
 }

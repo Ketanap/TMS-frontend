@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
+  
+
 
 @Component({
   selector: 'app-task-display',
@@ -11,10 +13,15 @@ export class TaskDisplayComponent {
   filteredTasks: any = [];
   p: number = 1; 
   searchText: string = '';
+  
+
+ 
+  
 
   @Output() editEvent= new EventEmitter<any>();
   TaskDate: any;
   UserId: any;
+  userid: any;
   ProjectId: any;
   StatusId: any;
   Description: any;
@@ -32,12 +39,23 @@ export class TaskDisplayComponent {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${api_key}`
     });
-
+  
     const requestOptions = { headers: headers };
-    this.http.get('http://localhost:9090/task', requestOptions).subscribe(data => this.showData(data));
+    if (this.user.user.roleid == 1) {
+      this.http.get('http://localhost:9090/task', requestOptions).subscribe(data => this.showData(data));
+    } else {
+      const userId = this.user.user.userid; // Assuming user ID is present in the user object
+      this.http.get(`http://localhost:9090/task/user/${userId}`, requestOptions).subscribe(data => this.showData(data));
+    }
   }
+  
+    
+
+   
+  
 
   ngOnInit(): void {
+   
     const searchInput = document.getElementById('search-input');
   if (searchInput) {
     searchInput.addEventListener('keyup', (event: KeyboardEvent) => {
@@ -52,6 +70,8 @@ export class TaskDisplayComponent {
     console.log(data);
     this.tasks = data;
     this.filteredTasks = data;
+ 
+   
     for (let i = 0; i < this.tasks.length; i++) { //for completed toggle
       const task = this.tasks[i];
       const taskKey = `task_${task.taskid}_completed`;
@@ -79,10 +99,16 @@ export class TaskDisplayComponent {
   }
 
   toggleCompleted(task: any) {
-    task.completed = !task.completed;
+    if (task.completed) {
+      // Task is already completed, do not allow toggling
+      return;
+    }
+    
+    task.completed = true;
     const taskKey = `task_${task.taskid}_completed`;
-    localStorage.setItem(taskKey, String(task.completed));
+    localStorage.setItem(taskKey, 'true');
   }
+  
 
   searchData() {
     if (this.searchText !== '') {
@@ -109,4 +135,3 @@ export class TaskDisplayComponent {
   
   
 }
-
