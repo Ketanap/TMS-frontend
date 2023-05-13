@@ -1,8 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
   
-
-
 @Component({
   selector: 'app-task-display',
   templateUrl: './task-display.component.html',
@@ -13,11 +11,9 @@ export class TaskDisplayComponent {
   filteredTasks: any = [];
   p: number = 1; 
   searchText: string = '';
-  
-
- 
-  
-
+  startDate: string = '';
+  endDate: string = '';
+  statusSortOption: string = '';
   @Output() editEvent= new EventEmitter<any>();
   TaskDate: any;
   UserId: any;
@@ -49,13 +45,9 @@ export class TaskDisplayComponent {
     }
   }
   
-    
-
-   
-  
-
   ngOnInit(): void {
-   
+    this.startDate = '';
+  this.endDate = '';                          
     const searchInput = document.getElementById('search-input');
   if (searchInput) {
     searchInput.addEventListener('keyup', (event: KeyboardEvent) => {
@@ -70,16 +62,12 @@ export class TaskDisplayComponent {
     console.log(data);
     this.tasks = data;
     this.filteredTasks = data;
+    
+
  
    
-    for (let i = 0; i < this.tasks.length; i++) { //for completed toggle
-      const task = this.tasks[i];
-      const taskKey = `task_${task.taskid}_completed`;
-      const completedStr = localStorage.getItem(taskKey);
-      if (completedStr !== null) {
-        task.completed = completedStr === 'true';
-      }
-    }
+    
+    
   }
 
   editClick(id: number) {
@@ -98,16 +86,9 @@ export class TaskDisplayComponent {
     this.http.delete('http://localhost:9090/task/' + taskid, requestOptions).subscribe(data => { location.reload(); });
   }
 
-  toggleCompleted(task: any) {
-    if (task.completed) {
-      // Task is already completed, do not allow toggling
-      return;
-    }
+  
     
-    task.completed = true;
-    const taskKey = `task_${task.taskid}_completed`;
-    localStorage.setItem(taskKey, 'true');
-  }
+   
   
 
   searchData() {
@@ -128,6 +109,23 @@ export class TaskDisplayComponent {
                projectName.includes(this.searchText.toLowerCase());
                
       });
+    } else {
+      this.filteredTasks = this.tasks;
+    }
+  }
+  filterByDate() {
+    if (this.startDate && this.endDate) {
+      this.filteredTasks = this.tasks.filter((task: any) => {
+        const taskDate = new Date(task.taskdate);
+        return taskDate >= new Date(this.startDate) && taskDate <= new Date(this.endDate);
+      });
+    } else {
+      this.filteredTasks = this.tasks;
+    }
+  }
+  sortData() {
+    if (this.statusSortOption !== '') {
+      this.filteredTasks = this.tasks.filter((task: any) => task.tblTaskstatus.statusname === this.statusSortOption);
     } else {
       this.filteredTasks = this.tasks;
     }

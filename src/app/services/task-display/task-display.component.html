@@ -10,6 +10,21 @@
         </div>
       </div>
       <div>
+        <label>Date</label>
+        <input type="date" [(ngModel)]="startDate" style="height: 36px; margin-left: 5px;"> 
+        <input type="date" [(ngModel)]="endDate" style="height: 36px; margin-left: 5px;">
+      <button class="btn" (click)="filterByDate()" style="height: 36px; margin-left: 5px;">Filter</button>
+      </div>
+      <div>
+        <label>Sort By Status</label>
+        <select [(ngModel)]="statusSortOption" (change)="sortData()" style="height: 36px; margin-left: 5px;">
+          <option value="">All</option>
+          <option value="Completed">Completed</option>
+          <option value="Pending">Pending</option>
+          <option value="Working">Working</option>
+        </select>
+      </div>
+      <div>
         <input type="text" id="search-input" placeholder="Search" [(ngModel)]="searchText" style="height: 36px; margin-right: 5px;">
         <span class="input-group-btn">
           <button class="btn " type="button" (click)="searchData()">Search</button>
@@ -47,8 +62,11 @@
                 <td> {{ task.actualtime }} </td>
                 <td> {{ task.duedate }} </td>
                 <td> {{ task.completeddate }} </td>
-                <td><i class="bi" style="font-size: 25px;" 
-                    [ngClass]="{'bi-check2-circle text-success': task.completed,'bi-circle text-danger': !task.completed}" (click)="toggleCompleted(task)"> </i></td>
+                <td><i [ngClass]="{
+                  'bi-check2-circle text-success': task.tblTaskstatus.statusname === 'Completed',
+                  'bi-circle text-danger': task.tblTaskstatus.statusname === 'Pending',
+                  'bi bi-hourglass-split text-muted': task.tblTaskstatus.statusname === 'Working'
+                }" style="font-size:25px; color: black;"></i></td>
                 <td><i class="bi bi-nintendo-switch" style="font-size:25px; color: black;" routerLink="../changestatus" [queryParams]="{id: task.taskid}"></i></td>
                 <td><button type="button" id="boot-icon" class="bi bi-pencil-square" style="font-size: 25px; border: 0px ; color: rgb(38, 101, 227); background: none;" routerLink="../taskedit" [queryParams]="{id: task.taskid}"></button></td>
                 <td><button type="button" id="boot-icon" class="bi bi-trash" style="font-size: 25px; border: 0px solid; color:rgb(192 60 73); background: none;" (click)='removeClick(task.taskid)'></button></td>
