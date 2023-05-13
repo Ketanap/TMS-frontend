@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
-  
+import * as XLSX from 'xlsx';
+import { Task } from './task.model';  
+
 @Component({
   selector: 'app-task-display',
   templateUrl: './task-display.component.html',
@@ -24,7 +26,7 @@ export class TaskDisplayComponent {
   ExpectedTime: any;
   ActualTime: any;
   DueDate: any;
-  ComletedDate: any;
+  CompletedDate: any;
   Completed: any;
   ChangeStatus: any;
   user: any;
@@ -131,5 +133,34 @@ export class TaskDisplayComponent {
     }
   }
   
+  exportToExcel() {
+    // Prepare the data in the format required by xlsx
+    const data = this.filteredTasks.map((task: Task) => ({
+      'task Date': task.taskdate,
+      'User': task.tblUser?.username || '',
+      'Project': task.tblProject?.projectname || '',
+      'Status' : task.tblStatus?.statusname || '',
+      'Description' : task.description,
+      'Expected Time' : task. expectedtime,
+      'Actual Time' : task.actualtime,
+      'Due Date' : task.duedate,
+      'Complete Date' : task.completedate
+    }));
   
+
+    // Create a new workbook and worksheet
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(data);
+
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'tasks');
+
+    // Generate a file name
+    const fileName = 'tasks.xlsx';
+
+    // Export the workbook to Excel file
+    XLSX.writeFile(workbook, fileName);
+  }
+
+
 }

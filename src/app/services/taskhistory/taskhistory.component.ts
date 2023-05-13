@@ -68,6 +68,7 @@ export class TaskhistoryComponent {
       this.filteredhistories = this.histories;
     }
   }
-
+  
+  
 
 }

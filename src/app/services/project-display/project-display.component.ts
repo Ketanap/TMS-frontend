@@ -46,7 +46,7 @@ export class ProjectDisplayComponent {
   }
 
   showData(data: any) {
-     console.log(data);
+    console.log(data);
     this.projects = data;
     this.filteredprojects = this.projects;
   }
@@ -92,20 +92,21 @@ export class ProjectDisplayComponent {
     // Prepare the data in the format required by xlsx
     const data = this.filteredprojects.map((project: Project) => ({
       'Project Name': project.projectname,
+      'Client':project.tblClient?.clientname || ''
       
       
     }));
   
 
-    // Create a new workbook and worksheet
+    // Create a new workbook and worksheets
     const workbook = XLSX.utils.book_new();
     const worksheet = XLSX.utils.json_to_sheet(data);
 
     // Add the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Clients');
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Projects');
 
     // Generate a file name
-    const fileName = 'clients.xlsx';
+    const fileName = 'projects.xlsx';
 
     // Export the workbook to Excel file
     XLSX.writeFile(workbook, fileName);
