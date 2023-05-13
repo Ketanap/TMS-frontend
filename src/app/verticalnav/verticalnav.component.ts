@@ -11,9 +11,7 @@ export class VerticalnavComponent {
 
   constructor(private router: Router) { }
 
-  
 
-  private sidebarTriggerEl!: HTMLElement;
 
   onLogout() {
     const currentUrl = this.router.url;

@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
+import * as XLSX from 'xlsx';
+import { Project } from '../project.model';
 
 @Component({
   selector: 'app-project-display',
@@ -86,7 +88,29 @@ export class ProjectDisplayComponent {
       this.filteredprojects = this.projects;
     }
   }
+  exportToExcel() {
+    // Prepare the data in the format required by xlsx
+    const data = this.filteredprojects.map((project: Project) => ({
+      'Project Name': project.projectname,
+      
+      
+    }));
   
+
+    // Create a new workbook and worksheet
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(data);
+
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Clients');
+
+    // Generate a file name
+    const fileName = 'clients.xlsx';
+
+    // Export the workbook to Excel file
+    XLSX.writeFile(workbook, fileName);
+  }
+
   
   
 }
